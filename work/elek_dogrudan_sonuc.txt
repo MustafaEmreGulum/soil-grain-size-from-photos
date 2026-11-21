@@ -1,0 +1,88 @@
+24 toprak
+Elek başına mutlak hata ve ham doğrudan tahminin kazandığı numune sayısı
+        Ortalama   Komşu     Ham  Düzeltilmiş  Ham kazandı
+0.002      3.119   2.564   2.426        2.426           10
+0.0063     5.689   4.303   4.279        4.298           10
+0.02      12.738   9.768   9.364        9.383           11
+0.063     25.710  14.917  14.869       14.846            8
+0.2       35.491  12.484  13.940       13.925            7
+0.63      38.005  11.457  12.470       12.470           11
+2         31.209  10.422   9.209        9.209           12
+6.3       19.863   8.620   7.754        7.768           12
+20         7.024   5.107   4.828        4.815           11
+63         0.928   0.647   0.954        0.954            4
+Monotonluk düzeltmesi gereken satır: 4
+Motorola → Samsung
+Elek başına mutlak hata ve ham doğrudan tahminin kazandığı numune sayısı
+        Ortalama   Komşu     Ham  Düzeltilmiş  Ham kazandı
+0.002      3.397   2.775   2.599        2.599           10
+0.0063     6.169   4.452   4.634        4.652            9
+0.02      13.567   9.683   9.969        9.968            9
+0.063     26.849  16.391  16.317       16.301           11
+0.2       36.546  18.290  19.014       19.013            9
+0.63      38.799  14.919  18.767       18.767            4
+2         31.431  13.304  14.474       14.474            7
+6.3       18.858  10.597  10.623       10.623            9
+20         5.649   5.642   4.765        4.765           15
+63         0.408   0.885   0.438        0.438           10
+Monotonluk düzeltmesi gereken satır: 3
+Samsung → Motorola
+Elek başına mutlak hata ve ham doğrudan tahminin kazandığı numune sayısı
+        Ortalama   Komşu     Ham  Düzeltilmiş  Ham kazandı
+0.002      3.397   2.896   2.755        2.755           10
+0.0063     6.169   4.721   4.895        4.898            8
+0.02      13.567  10.046  11.166       11.165            7
+0.063     26.849  16.085  17.531       17.530            7
+0.2       36.546  14.600  14.904       14.900            9
+0.63      38.799   9.172  11.493       11.478            8
+2         31.431   6.840   7.736        7.705           10
+6.3       18.858   6.222   6.204        6.178            9
+20         5.649   3.543   3.499        3.444           12
+63         0.408   0.204   0.424        0.350            0
+Monotonluk düzeltmesi gereken satır: 12
+24 toprak {'Komşu': 40.144, 'Ham': 40.047, 'Doğrudan': 40.047, 'Eşit karışım': 39.122, 'v3': 38.758, 'v3 özgün': 38.44} iyileşen/eşit/kötüleşen 10 0 14 ortanca kazanç -0.942
+Karışım / Komşu iyileşen/eşit/kötüleşen 13 0 11
+Karışım / Doğrudan iyileşen/eşit/kötüleşen 16 0 8
+Karışım / v3 iyileşen/eşit/kötüleşen 15 0 9
+Yapay çekim eklenince iyileşen/eşit/kötüleşen 9 0 15
+            Komşu     Ham  Doğrudan  Eşit karışım      v3  v3 özgün  Kazanç
+sample_id                                                                  
+H374        33.55   56.22     56.22         43.22   52.40     47.94  -22.67
+H371        14.03   33.27     33.27         23.36   23.83     20.81  -19.24
+H372        10.12   25.43     25.43         17.78   35.34     31.93  -15.31
+H126        18.33   33.01     33.01         22.95   28.85     41.60  -14.68
+H549        33.51   46.01     46.01         39.73   37.31     52.52  -12.50
+H366         8.11   19.85     19.85         13.22   21.75     18.72  -11.74
+F827        42.95   51.45     51.46         47.20   31.43     46.54   -8.50
+H617        27.95   36.02     36.02         31.99   21.26     16.62   -8.07
+H516        54.18   61.30     61.30         57.03   44.57     38.76   -7.12
+H183        13.28   17.97     17.97         15.62   19.59     20.01   -4.69
+H616        68.83   73.37     73.37         71.10   60.23     49.64   -4.55
+H615        12.23   13.41     13.41          6.33   24.14     22.85   -1.18
+H367        12.59   13.29     13.29         11.11   20.44     17.80   -0.70
+H181        19.27   19.88     19.88         19.25   20.28     20.64   -0.60
+H368        14.50   14.03     14.03          8.83   13.67     14.06    0.47
+H666        32.40   31.59     31.59         30.30   28.23     24.49    0.81
+H493        23.18   21.99     21.99         22.58   56.24     42.52    1.19
+H030        35.43   30.06     30.06         32.74   18.56     11.14    5.37
+G190        19.87    8.47      8.47         14.17   17.74     27.38   11.40
+H637        36.28   21.04     21.04         27.23   32.68     32.53   15.24
+H038       126.29  109.32    109.32        117.80  119.66    108.19   16.97
+H037        98.81   79.59     79.59         89.20   91.45     76.82   19.22
+H668        87.65   56.86     56.86         72.25   36.33     50.36   30.79
+H405       120.14   87.71     87.71        103.93   74.21     88.70   32.43
+Motorola → Samsung {'Komşu': 48.464, 'Ham': 50.8, 'Doğrudan': 50.8, 'Eşit karışım': 48.419, 'v3': 41.987, 'v3 özgün': 47.716} iyileşen/eşit/kötüleşen 7 0 14 ortanca kazanç -2.782
+Karışım / Komşu iyileşen/eşit/kötüleşen 10 0 11
+Karışım / Doğrudan iyileşen/eşit/kötüleşen 16 0 5
+Karışım / v3 iyileşen/eşit/kötüleşen 9 0 12
+Yapay çekim eklenince iyileşen/eşit/kötüleşen 16 0 5
+Samsung → Motorola {'Komşu': 37.162, 'Ham': 40.304, 'Doğrudan': 40.202, 'Eşit karışım': 37.782, 'v3': 42.831, 'v3 özgün': 38.656} iyileşen/eşit/kötüleşen 8 0 13 ortanca kazanç -3.704
+Karışım / Komşu iyileşen/eşit/kötüleşen 9 0 12
+Karışım / Doğrudan iyileşen/eşit/kötüleşen 14 0 7
+Karışım / v3 iyileşen/eşit/kötüleşen 11 0 10
+Yapay çekim eklenince iyileşen/eşit/kötüleşen 4 0 17
+Çapraz ortalama {'Komşu': 42.813, 'Ham': 45.552, 'Doğrudan': 45.501, 'Eşit karışım': 43.1, 'v3': 42.409, 'v3 özgün': 43.186} iyileşen/eşit/kötüleşen 6 0 15 ortanca kazanç -1.748
+Karışım / Komşu iyileşen/eşit/kötüleşen 10 0 11
+Karışım / Doğrudan iyileşen/eşit/kötüleşen 17 0 4
+Karışım / v3 iyileşen/eşit/kötüleşen 7 0 14
+Yapay çekim eklenince iyileşen/eşit/kötüleşen 11 0 10

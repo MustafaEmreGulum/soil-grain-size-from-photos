@@ -1,0 +1,76 @@
+Eğitim         Üç komşuya uzaklık  Dışarıda
+min                  1.347       0.0
+median               2.406       1.0
+max                  4.573      16.0
+Test         Üç komşuya uzaklık  Dışarıda
+min                  2.587       0.0
+median               3.557       2.5
+max                 12.755      20.0
+                          Üç komşuya uzaklık  Dışarıda          Komşular
+sample_id                                                               
+HPC_Airbus BS10-4bis7                  2.587         0  G190, H030, H666
+HPC_Kleinkummerfeld 9-4                2.731         2  H038, H037, H617
+HPC_Kleinkummerfeld 2-3                2.863         0  H549, G190, H668
+HPC_Airbus BS6-3                       3.154         2  H030, F827, H038
+HPC_Kleinkummerfeld 18-3               3.458         4  H037, H038, H617
+HPC_Testfeld Lidl WHV                  3.656         7  H371, H372, H615
+HPC_Audorfring                         4.091         1  H405, H126, H616
+HPC_Airbus BS12-5bis8                  4.495         3  H038, G190, H030
+HPC_Kleinkummerfeld 2-2                5.284         4  H616, H493, H549
+HPC_Muenster_BS6_9_0-10m              12.755        20  H371, H372, H368
+Eğitim en büyüğünü geçen test toprağı: 2
+Özgün eğitim çekimlerinde en yüksek uzaklık: 7.314
+                          Çekim   En_az  En_çok  Aşım
+Numune                                               
+HPC_Airbus BS10-4bis7         3   2.578   2.760     0
+HPC_Airbus BS12-5bis8         3   4.095   4.882     0
+HPC_Airbus BS6-3              3   2.725   3.343     0
+HPC_Audorfring                5   3.750   4.562     0
+HPC_Kleinkummerfeld 18-3      3   2.873   3.527     0
+HPC_Kleinkummerfeld 2-2       3   5.210   5.882     0
+HPC_Kleinkummerfeld 2-3       3   2.806   3.085     0
+HPC_Kleinkummerfeld 9-4       3   2.524   3.013     0
+HPC_Muenster_BS6_9_0-10m      5  12.101  15.346     5
+HPC_Testfeld Lidl WHV         4   3.529   4.798     0
+              İnce/iri 3 komşu      v3
+Sınav                                 
+Herhangi iki            40.342  38.925
+Normal                  40.144  38.758
+İki yakın               41.387  40.788
+Yakın çifti çıkarmanın ek hatası: ortalama, ortanca ve pozitif numune sayısı
+İnce/iri 3 komşu    1.045
+v3                  1.863
+dtype: float64
+İnce/iri 3 komşu   -0.359
+v3                  2.401
+dtype: float64
+İnce/iri 3 komşu    12
+v3                  16
+dtype: int64
+Yakın çift ile rastgele çiftin beklenen hatası arasındaki fark, her numune
+        İnce/iri 3 komşu     v3
+Numune                         
+F827                0.16   2.18
+G190               11.38   2.01
+H030                0.50   4.92
+H037               -7.10  -5.34
+H038               15.21   7.76
+H126               -3.70   2.62
+H181                8.60   0.68
+H183                9.16   1.58
+H366                5.30   4.46
+H367               -4.88  -1.53
+H368               -1.15   3.53
+H371                4.66   7.47
+H372                5.69   5.71
+H374                4.89   3.33
+H405              -11.89  -6.10
+H493               -1.33  -7.88
+H516               -6.05  -0.24
+H549               20.53   5.66
+H615               -2.16   3.61
+H616              -14.06  -6.95
+H617               -1.81  13.41
+H637               -0.79  -0.72
+H666               -6.14  -3.00
+H668                0.08   7.55

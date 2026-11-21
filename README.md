@@ -1,8 +1,14 @@
 # Toprak fotoğraflarından tane boyutu tahmini
 
-Bu deney, fotoğraftan bir toprağın 11 elek çapındaki kümülatif kütle yüzdelerini tahmin eden iki yöntemi karşılaştırıyor. Sorumuz şu: Model, eğitimde benzer irilikte hiç numune görmediğinde ne kadar hata yapıyor? D50, toplam kütlenin yarısının geçtiği elek çapıdır. EMD, yarışmanın bütün eğri üzerindeki hata ölçüsüdür ve düşük değer daha iyidir. [Kaggle yarışması](https://www.kaggle.com/competitions/soil-grain-size-from-photos)
+Bir toprak fotoğrafından kütlenin yüzde kaçının 11 farklı elekten geçeceğini tahmin ediyoruz. Çalışma 24 eğitim toprağına dayanıyor. D50, toplam kütlenin yarısının geçtiği elek çapıdır. EMD, yarışmanın bütün eğri üzerindeki hata ölçüsüdür ve düşük değer daha iyidir. [Kaggle yarışması](https://www.kaggle.com/competitions/soil-grain-size-from-photos)
 
-## Deney
+## Deney defteri
+
+- Doku ölçüleri, KNN, Ridge, DINOv2, Weibull ve v3 deneylerinin sırası, notebook'lar ve Kaggle gönderimlerinin puanları. [Güncel durum](outputs/GUNCEL_DURUM.md)
+- H374 ve H615'in sekiz fotoğrafı aynı fiziksel ölçekte incelendi. Önceki iri toprak sınavında laboratuvar D50'leri 5,91 ve 5,34 mm iken v3 tahminleri 1,37 ve 6,20 mm oldu. [Görüntü karşılaştırması](outputs/h374_h615_ayni_olcek.png) · [Çekim bazında sonuçlar](outputs/h374_h615_cekimleri.csv)
+- İkinci bir iri tane adayını ölçmek, 24 toprakta ortalama EMD'yi 38,758'den 38,709'a indirdi. H615'in puanı dışarıda bırakıldığında kazanç tersine döndü. Saf v3 referans model olarak kaldı. [Deney kodu](outputs/ikinci_iri_aday.py) · [24 toprak ve iki telefon sınavının sonuçları](outputs/ikinci_iri_aday_sonuclari.csv)
+
+## Beş iri toprağı birlikte saklama deneyi
 
 1. Laboratuvar D50'si en büyük beş toprağı birlikte sakladık. Kalan 19 toprağın en büyük D50'si 4,585 mm idi. Her saklı numunenin bütün fotoğrafları ve türevleri eğitim dışında kaldı.
 2. Kontrollü karşılaştırmada aynı toprağı sakladık, diğer dört iri toprağı eğitime aldık ve onların yerine daha ince dört toprağı çıkardık. Her turda eğitimde 19 toprak kaldı. Rastgele seçilen 100 farklı dörtlüyü her hedef ve iki model için ortak kullandık (tohum 42). Önce her hedef için kontrol hatalarının ortalamasını aldık.
@@ -42,3 +48,15 @@ Yarışmadan indirdiğiniz `Training_labels_updated.csv` dosyasını `work/soil-
 ```shell
 python outputs/iri_toprak_sinavi.py
 ```
+
+H374/H615 karşılaştırması ve ikinci iri aday deneyi için yarışmanın eğitim fotoğraflarını arşivdeki klasör yapısıyla `work/soil-data/` altına çıkarın. Bu iki betik görselleri üretmek için Matplotlib kullanır.
+
+```shell
+python -m pip install matplotlib
+python outputs/h374_h615_incelemesi.py
+python outputs/ikinci_iri_aday.py
+```
+
+## Görsellerin kaynağı
+
+Notebook ve rapor görsellerindeki toprak fotoğrafları, Lukas Leibold ve Geotechnical Resilience Project'in Kaggle'da yayımladığı *Predicting Soil Grain Size Distributions from Images* veri kümesinden alınmıştır. Analizlerde fotoğraflar kırpıldı, milimetre ölçeğine getirildi ve bazı örneklerde ölçüm bölgeleri işaretlendi. Veri sayfasında belirtilen lisans CC BY 4.0'dır. [Veri kaynağı](https://www.kaggle.com/competitions/soil-grain-size-from-photos/data) · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
