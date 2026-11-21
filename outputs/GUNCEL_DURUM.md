@@ -434,6 +434,167 @@ H374'te gerçek iri pay %23,5125. Yeni karşılaştırmadaki saf v3 tahmini %3,0
 
 İnce eleklerdeki hataların yönünü de aynı 24 saklı numunede saf v3 ve ince/iri KNN için karşılaştırdık. Modeller 0,063 mm'de 22/24, 0,2 mm'de 20/24 ve 0,63 mm'de 21/24 toprakta aynı yönde yanıldı. H037 ve H038'de iki model de üç elekten geçen kütleyi fazla tahmin etti. H038'de 0,63 mm'de v3 +55,00, KNN +60,64 yüzde puan; H037'de sırasıyla +46,98 ve +46,22 yüzde puan saptı. Bu iki numune, üç elekte her iki modelin paylaştığı hata büyüklüğüne göre öne çıktı (aynı yöndeyse iki mutlak hatanın küçüğü, aksi halde sıfır; ardından üç eleğin ortalaması). Elde edilen 72 değer aynı 24 topraktan geliyor. H037 ve H038'i bir sonraki tanıda laboratuvar eğrisi benzer ve tahmin hatası daha düşük referanslarla karşılaştıracağız.
 
+### 21 Kasım · Literatür önerilerinin değerlendirmesi
+
+Bu aşamada üç öneriyi değerlendirdik. Yeni model çalıştırılmadı. 24 eğitim kimliğinin tamamı Zenodo kaydındaki 26 numuneyle eşleşiyor. Kayıttaki diğer iki kimlik H031 ve H693. Örtüşme kimlik düzeyinde doğrulandı. Tüm kayıtla eğitilmiş bir toprak modelinin aynı 24 numunedeki puanı bağımsız doğrulama sağlayamaz. [Zenodo veri kaydı](https://zenodo.org/records/14725633)
+
+1. **Öncelik bölgeler arası dalgacık enerjisi.** 1, 2 ve 4 mm desen ölçeklerinin her birinde, aynı fiziksel alanlı bölgelerin enerjilerinden ortalama ve 90. yüzdelik eksi ortanca hesaplanacak. İkinci özet, enerjisi yüksek bölgelerin tipik bir bölgeden ne kadar ayrıldığını ölçer. Bölgelerin yerleri değiştirildiğinde değeri aynı kalır. Merkezde, kenarda veya yan yana birikme ayrı bir araştırma sorusudur. Buscombe'un yüzey dokusu çalışmasından hareketle bu özetlerin laboratuvardaki ince kütle payı hakkında dolaylı bilgi taşıyıp taşımadığını sınayacağız. Önceki 4 × 4 deneyimiz altı doku ölçüsünün bölgeler arası standart sapmasını KNN'ye eklemişti. [Buscombe](https://doi.org/10.1111/sed.12049)
+2. **Çok bölgeli DINOv2 ve Ridge.** Montréal tezinin 316 numunedeki çözünürlük karşılaştırması bölgesel ayrıntıyı korumayı destekliyor. Eski DINOv2 denememizde tek kesit üç komşu seçmek için kullanılmıştı. DINOv2'ye geçilirse tek kesit + Ridge ile çok bölge + Ridge karşılaştırılmalı. Her toprağın bölgeleri önce kendi içinde birleştirilmeli ve her toprak bir eğitim örneği olarak kalmalı. Öğrenilmiş bölge ağırlıklarını sonraya bırakıyoruz. [Tez](https://espace.etsmtl.ca/id/eprint/4065/)
+3. **Elek aralığı kütle payları.** V3 zaten geçerli, monoton bir eğri üretiyor. Yeni soru, aynı görüntü ölçülerinden aralık paylarını öğrenmenin kümülatif eğrideki EMD'yi azaltıp azaltmadığı. Görüntü girdilerini ve doğrulamayı sabit tutan ayrı bir deney olarak değerlendirilecek. [Anh ve arkadaşları](https://doi.org/10.1186/s40703-026-00263-x)
+
+**Dört sürümlü dalgacık planı.** Saf v3, v3 + ortalama, v3 + bölgesel fark ve v3 + ortalama + bölgesel fark aynı fiziksel kesitlerde, aynı PLS ayarlarıyla ve aynı saklı topraklarda karşılaştırılacak. Sırasıyla 0, 3, 3 ve 6 yeni özellik kullanılacak.
+
+| Karşılaştırma | Ölçülen katkı |
+|---|---|
+| Saf v3 ile v3 + ortalama | Ortalama dalgacık enerjisinin mevcut v3 girdilerine katkısı |
+| v3 + ortalama ile v3 + bölgesel fark | Eşit sayıda özellik kullanıldığında iki özetin tahmin başarısı |
+| **v3 + ortalama ile v3 + ortalama + bölgesel fark** | **Ortalama zaten modeldeyken bölgesel farkı eklemenin tahmin başarısına katkısı** |
+
+**Karar ölçüleri.** Ana karşılaştırmada her saklı toprağın kazancı, ortalamalı modelin EMD'sinden ortalama ve bölgesel farkı birlikte kullanan modelin EMD'si çıkarılarak hesaplanacak. Pozitif değer iyileşme demektir. Birincil sonuç 24 toprağın tüm eğri üzerindeki ortalama EMD farkıdır. Ortanca kazanç, iyileşen numune sayısı ve üç ince elekteki işaretli hatalar ayrıca kaydedilecek. H037 ve H038 bu fikre esin verdiği için aynı saklı tahminlerin diğer 22 topraktaki ortalama kazancı da raporlanacak. İki telefon yönü (Motorola → Samsung ve Samsung → Motorola) ayrı gösterilecek. Kazancın kalan 22 toprakta ve her iki telefon yönünde de korunması bölgesel farkı kullanma gerekçesini güçlendirecek. Dört sürümün puanları deney çalıştırıldığında eklenecek.
+
+**Çalıştırma düzeni.** Sonuçlar görülmeden merkezdeki 90 × 90 mm kesit, 4 piksel/mm ve 4 × 4 eşit bölge seçildi. Gri kesit kendi ortalaması ve standart sapmasıyla normalize edilecek. 1, 2 ve 4 mm dalga boylarında dört yönün (0°, 45°, 90°, 135°) karmaşık Morlet yanıtlarının karesel büyüklükleri ortalanacak. Gauss penceresinin standart sapması dalga boyunun 0,75 katı. Süzme tüm kesitte yapıldıktan sonra her 22,5 × 22,5 mm bölgede ortalama enerji hesaplanacak. Her dalga boyunda 16 bölge değerinin ortalaması ve 90. yüzdeliği eksi ortancası alınacak. Ek özellikler v3'ün iki PLS bileşenine de girecek. Eski görüntü özellikleri ve eğitim türevleri korunacak.
+
+### 21 Kasım · Dört sürümlü dalgacık deneyinin sonuçları
+
+127 özgün fotoğraf ve sekizer eğitim türevi için altı ölçü çıkarıldı. 1.143 fotoğraf/türev anahtarı v3 önbelleğiyle eşleşti. Saklı numunenin yalnızca özgün çekimleriyle tahmin yapıldı. Düz sentetik görüntüde altı ölçü de sıfırdı. 1, 2 ve 4 mm periyotlu desenlerin her biri en yüksek enerjiyi kendi ölçeğinde verdi. Desen yalnızca görüntünün yarısında kaldığında bölgesel fark her üç ölçekte de büyüdü. 264 tahmin eğrisinden EMD ve ince eleklerin işaretli hataları yeniden hesaplandı. Üç sınavdaki 66 saf v3 puanı, önceki deneyin aynı numuneleriyle birebir kontrol edildi (mutlak tolerans 0,0000001 EMD). [Çalıştırma kodu](dalgacik_karsilastirmasi.py) · [Tahmin eğrileri ve numune sonuçları](dalgacik_sonuclari.csv) · [24 eşleştirilmiş EMD farkı](dalgacik_eslestirilmis_kazanc.png)
+
+| Saklı numunelerde ortalama EMD | Saf v3 | v3 + ortalama | v3 + bölgesel fark | v3 + ikisi |
+|---|---:|---:|---:|---:|
+| 24 toprak | **38,758** | 38,981 | 39,649 | 39,689 |
+| H037 ve H038 dışındaki 22 puan | **32,685** | 33,350 | 33,820 | 34,260 |
+| Motorola → Samsung, 21 toprak | **41,987** | 42,944 | 43,335 | 44,130 |
+| Samsung → Motorola, 21 toprak | 42,831 | **42,120** | 43,376 | 42,824 |
+
+| Ana karşılaştırma (ortalama enerjili EMD eksi iki özeti de kullanan EMD) | Ortalama kazanç | Ortanca kazanç | İyileşen / eşit / kötüleşen |
+|---|---:|---:|---:|
+| 24 toprak | −0,708 | −0,066 | 11 / 0 / 13 |
+| Seçili ikili dışındaki 22 puan | −0,909 | −0,258 | 9 / 0 / 13 |
+| Motorola → Samsung | −1,185 | −0,700 | 8 / 0 / 13 |
+| Samsung → Motorola | −0,704 | −0,740 | 7 / 0 / 14 |
+
+H037'de EMD 86,592'den 84,782'ye, H038'de 115,242'den 114,036'ya düştü. En büyük kayıplar F827'de 7,047, H668'de 6,897 ve H126'da 6,807 EMD idi. Her seferinde bir numunenin puanını çıkardığımızda ortalama kazanç −0,874 ile −0,432 arasında kaldı. 22 puanlık satırda mevcut saklı tahminlerin ikisini puanlamadan çıkardık.
+
+| 24 toprakta ince elek hatası (yüzde puan) | Ortalama enerji, işaretli | İki özet, işaretli | Ortalama enerji, mutlak | İki özet, mutlak |
+|---|---:|---:|---:|---:|
+| 0,063 mm | −1,270 | −2,124 | 13,376 | 13,854 |
+| 0,2 mm | +0,566 | −0,333 | 11,972 | 12,458 |
+| 0,63 mm | +4,030 | +3,632 | 10,066 | 10,315 |
+
+İşaretli hata tahmin eksi laboratuvar ölçümüdür. H037'de 0,063 / 0,2 / 0,63 mm'deki üç işaretli hata sırasıyla +15,57 / +40,01 / +46,09'dan +14,44 / +38,87 / +45,74'e indi. H038'de +17,97 / +41,60 / +53,65'ten +17,35 / +40,77 / +53,28'e indi. Buna karşılık 24 topraktaki ortalama mutlak hata üç elekte de arttı.
+
+**Karar.** Seçilen ölçek ve bölge özeti, ortalama enerjiyi kullanan modele genellenebilir bir kazanç göstermedi. Saf v3 referans olarak kalıyor. Görüntü girdilerini sabit tutup ardışık elekler arasındaki kütle paylarını tahmin etmek, görüntü tarafında ek değişiklik gerektirmeyen bir sonraki bağımsız deney seçeneği.
+
+### 21 Kasım · Kütle payı modeli ve saf v3
+
+Paylaşılan sayısal özeti aynı kamera özelliklerinden bağımsız olarak yeniden hesapladık. Her turda aynı toprağın tüm çekimleri dışarıda kaldı. Pay modeli, 11 elek yüzdesinin ardışık farklarını (ilk elek için doğrudan o elekten geçen payı) öğrendi. İki PLS tahmini ortalandıktan sonra pay vektörü, negatif olmayan ve toplamı %100 olan vektörler kümesine Öklid uzaklığıyla izdüşürüldü. Kümülatif toplamdan eğri elde edildi. Saf v3 için önceki 66 numune/senaryo EMD'si 0,0000001 toleransla doğrulandı. [Yerel doğrulama kodu](kutle_payi_kontrolu.py) · [İki modelin saklı tahminleri](kutle_payi_kontrol_sonuclari.csv) · [Güncellenen Word raporu](Toprak_Tane_Boyutu_Literatur_ve_Deney_Sonuclari.docx)
+
+| Yerel sınama | Saf v3 EMD | Kütle payı EMD | Fark (pay − v3) |
+|---|---:|---:|---:|
+| 24 toprak | 38,758 | 37,218 | −1,540 |
+| H037 ve H038 hariç, 22 puan | 32,685 | 30,970 | −1,715 |
+| H493 hariç, 23 puan | 37,998 | 38,133 | +0,135 |
+| Motorola → Samsung, 21 toprak | 41,987 | 46,152 | +4,166 |
+| Samsung → Motorola, 21 toprak | 42,831 | 39,322 | −3,509 |
+
+24 toprağın 17'sinde kütle payı modeli daha düşük EMD verdi. Saf v3'e göre ortanca kazanç 0,645 EMD. H493'te 56,238'den 16,173'e inen hata ortalama kazancın yönünü belirledi. Hariç satırları aynı saklı tahminleri yeniden puanlar. İşaretli tablo farkları tam hassasiyetli ortalamalardan hesaplandı.
+
+0,063, 0,2 ve 0,63 mm'de kütle payı modelinin ortalama mutlak hatası sırasıyla 1,123, 2,199 ve 0,658 yüzde puan arttı. En büyük iyileşme 20 mm'de 2,369 yüzde puan. İri elekteki kazanç, öncelikli ince eleklerdeki ve Motorola → Samsung aktarımındaki kaybı gidermediği için ana model saf v3 olarak korundu. Bunlar yerel sonuçlardır.
+
+### Tek kesitli ve beş kesitli DINOv2 + Ridge için deney düzeni
+
+Sonuçları görmeden kesitleri ve Ridge ayarını sabitledik. Her kesit 100 × 100 mm. İkinci sürüm, ilk sürümün merkez vektörüne sağ/sol ve üst/alt yönlerinde 20'şer mm kaydırılmış dört çapraz kesitin vektörlerini ekleyip beşini eşit ağırlıkla ortalayacak. Kesitler örtüşüyor. 140 × 140 mm'lik toplam alan, 127 eğitim fotoğrafının en kısa fiziksel kenarına (156,63 mm) sığıyor. Her iki sürüm aynı 127 özgün fotoğrafı, önceki deneyin DINOv2-S/14 ağırlıklarını ve 224 × 224 renkli girdiyi kullanacak. Her numunede fotoğraf vektörlerinin aritmetik ortalaması alınacak.
+
+Her dış turda yalnızca eğitim topraklarında standartlaştırma, sekiz bileşenli PCA (bileşen varyansları bir olacak şekilde) ve sabit α = 10 ile Ridge uygulanacak. Hedef, laboratuvar eğrisinden v3'ün dönüşümüyle elde edilen logaritmik tane çapı yüzdelikleri. Numune bazında saklama ve iki çapraz telefon sınavı önceki v3 sınavlarıyla aynı olacak. İlk karar 24 topraktaki ortalama EMD ile tek ve beş kesit arasında verilecek. Kazananın saf v3 karşısındaki numune bazlı EMD farkları, her seferinde bir puanın dışarıda kalması ve iki telefon yönü ayrıca incelenecek.
+
+### 21 Kasım · Tek ve beş kesitli DINOv2 + Ridge sonuçları
+
+127 fotoğraftan 635 kesitin özelliklerini çıkardık. İki Ridge sürümünde merkez kesitini ve her turda sınava ayrılan toprakları birebir eşledik. Önceki üç komşulu model aynı merkez kesitleriyle 53,427662 EMD verdi ve kayıtlı 53,428 sonucunu yeniden üretti. Aşağıdaki karşılaştırmada karar ölçütü, her toprağa eşit ağırlık veren ortalama EMD’dir. Düşük değer daha iyi.
+
+| Yerel sınama (eğitim → sınama) | Saf v3 | Tek kesit + Ridge | Beş kesit + Ridge | Beş kesitin tek kesite göre kazancı | Beş kesitin tek kesiti geçtiği toprak |
+|---|---:|---:|---:|---:|---:|
+| 24 toprak, tüm telefonlar | 38,758 | 50,617 | 48,849 | +1,769 | 16/24 |
+| Motorola Edge → Samsung A52 | 41,987 | 53,780 | 55,375 | −1,595 | 10/21 |
+| Samsung A52 → Motorola Edge | 42,831 | 58,310 | 54,668 | +3,642 | 16/21 |
+
+Tek kesitten beş kesite geçince toprak başına ortanca kazanç 1,900 EMD oldu. Sırasıyla bir toprağın puanını ortalamadan çıkarıp aynı tahminleri değerlendirdiğimizde beş kesitin ortalama kazancı 24 karşılaştırmanın tamamında korundu (1,334–2,531 EMD). İki telefon arasındaki aktarımda ise kazancın yönü, eğitim için kullanılan telefona bağlıydı.
+
+Beş kesitli model saf v3’ü yalnızca 6/24 toprakta geçti. 24 toprakta ortalama hatası saf v3’ten 10,091 EMD daha yüksekti. Her seferinde bir puan çıkarıldığında saf v3’ün üstünlüğü 8,234–12,103 EMD arasında kaldı. Özellikle H493 hariç tutulduğunda 23 toprakta saf v3 37,998, beş kesit 48,810, tek kesit 50,230 EMD verdi.
+
+**Karar.** Merkeze dört örtüşen kesit eklemek bu sabit Ridge ayarında 24 topraktaki ortalama tahmini iyileştirdi. Saf v3 hem 24 toprakta hem iki telefon yönünde daha düşük EMD verdiği için ana model olarak kalıyor. [Deney kodu](dinov2_kesit_ridge.py) · [132 tahmin eğrisi, numune hataları ve eşleştirilmiş v3 puanları](dinov2_kesit_ridge_sonuclari.csv)
+
+### 21 Kasım · Saf v3 ve beş kesitli DINOv2 ince eleklerde hangi hataları paylaşıyor?
+
+Her toprak ve sınama için iki modelin saklı tahminini aynı laboratuvar sonucuyla eşleştirdik. Her modelin 66 tam eğrisinden EMD’yi yeniden hesaplayarak dosyalarda yazan puanları doğruladık. Aşağıdaki hatalar elekten geçen kütle yüzdesindeki **ortalama mutlak sapmayı** gösterir. Birim yüzde puandır. “Aynı yön” iki modelin de ölçümün üzerinde veya ikisinin de altında kalmasıdır.
+
+| Elek | Saf v3 hatası | DINOv2 hatası | DINOv2 daha yakın | İkisi aynı yönde yanıldı |
+|---|---:|---:|---:|---:|
+| 0,063 mm | 13,61 | 16,63 | 8/24 | 20/24 |
+| 0,2 mm | 11,72 | 19,72 | 8/24 | 20/24 |
+| 0,63 mm | 9,89 | 15,89 | 6/24 | 20/24 |
+
+Her toprakta üç eleğin mutlak hatalarına eşit ağırlık verdik. H037’de DINOv2 üç elek ortalamasında 19,03 yüzde puan, H038’de 4,33 puan kazandırdı. İkisinde de üç elekteki fazla tahmini küçülttü. H037’de 0,2 mm’deki fazla tahmin +42,77’den +18,15’e indi. F827’de aynı elekteki eksik tahmin −12,81’den −34,49’a büyüdü. Üç elek ortalamasında DINOv2’nin v3’ü geçtiği yedi toprak H037, H616, H038, H372, H371, H637 ve H030. H030’daki fark yalnızca 0,06 yüzde puan. Aynı toprağın üç ölçümü tek sonuç olarak sayıldı.
+
+| Sınama | DINOv2’nin daha yakın olduğu toprak | DINOv2’nin saf v3’e göre ek ortalama mutlak hatası (yüzde puan) |
+|---|---:|---:|
+| 24 toprak | 7/24 | +5,67 |
+| H037 ve H038 puanları hariç | 5/22 | +7,25 |
+| Motorola Edge → Samsung A52 | 6/21 | +4,34 |
+| Samsung A52 → Motorola Edge | 6/21 | +6,74 |
+
+**İki tahmini karıştırınca ne olabilir?** Sabit bir DINOv2 ağırlığı için karışım (1−w) × v3 + w × DINOv2 olarak tanımlandı. Saf v3’ten başlayınca hatanın değişme yönünü ayrıca hesapladık. Bir elekte v3’ün işaretli hatası sıfırdan farklıysa başlangıç eğimi, o hatanın işaretiyle (DINOv2 tahmini − v3 tahmini) çarpılarak bulunur. V3 tam isabet etmişse iki tahminin mutlak farkı kullanılır. Her mutlak hata ağırlığa göre dışbükey olduğu için ortalama başlangıç eğimi pozitifse hiçbir sabit pozitif ağırlık o ortalamayı azaltamaz. Negatif eğim, yeterince küçük ağırlıkla yerel azalmanın mümkün olduğunu gösterir. Tablodaki eğimler model puanı değildir.
+
+| Sınama | 0,063 mm başlangıç eğimi | 0,2 mm | 0,63 mm | Üç eleğin eşit ağırlıklı ortalaması | Tüm eğride EMD başlangıç eğimi |
+|---|---:|---:|---:|---:|---:|
+| 24 toprak | −1,191 | +5,435 | +3,548 | +2,597 | −2,073 |
+| H037 ve H038 puanları hariç | −0,287 | +7,284 | +4,688 | +3,895 | −0,132 |
+| Motorola Edge → Samsung A52 | −2,865 | +3,776 | +3,958 | +1,623 | −4,266 |
+| Samsung A52 → Motorola Edge | −7,261 | +0,048 | +2,803 | −1,470 | −16,443 |
+
+**Karar.** 24 toprakta üç ince eleğin ortak hatasını azaltmak için iki modele sabit ağırlık vermeyi eledik. 0,063 mm tek başına ele alındığında küçük bir DINOv2 payı aynı örneklerde fayda sağlıyor. Tüm eğride de küçük bir payın hata azaltma yönü var, ancak fikre esin veren iki toprak çıkarıldığında bu eğim sıfıra çok yaklaşıyor. Bu inceleme ana model seçimini değiştirmiyor. [Toprak, telefon ve elek bazında 198 karşılaştırma](dinov2_ince_elek_sonuclari.csv) · [Hesaplama ve doğrulama kodu](dinov2_ince_elek_kontrolu.py)
+
+### 21 Kasım · Kaggle gönderim ve final seçim önerisi (arka plan)
+
+Kaggle’ın yarışma servisi 21 Kasım’da son gönderim zamanını 30 Kasım 2026 11.00 UTC (Türkiye saatiyle 14.00), günlük üst sınırı 5 olarak verdi. Kaggle gönderim ekranında final için en fazla iki dosya seçilebiliyor. Public tablo test verisinin yaklaşık %30’unu kapsıyor. [Yarışma](https://www.kaggle.com/competitions/soil-grain-size-from-photos) · [Public tablonun kapsamı](https://www.kaggle.com/competitions/soil-grain-size-from-photos/leaderboard)
+
+1. **21 Kasım için önerilen referans gönderimi.** Kendi çalıştırmamızla üretilen saf v3 dosyasındaki 10 numune kimliğini, 11 elek yüzdesini ve eğri koşullarını tekrar doğruladık. Dosya, satır sonları eşitlendiğinde yazarın v3 dosyasıyla birebir aynı. Önceki karar deney puanını tekrar ölçmenin bilgi değerine ilişkindi. Bu gönderimin amacı saf v3’ü kendi hesabımızdaki iki final seçeneğinden biri olarak kullanılabilir hale getirmek. 40,90 yazarın bildirdiği public puan. Bizim şu ana kadarki en iyi doğrulanmış gönderimimiz 52,88353. [Saf v3 dosyası](../work/v3_puan_kontrol.csv) · [Yazarın puan kaydı](https://github.com/vitalclick/Predicting-Soil-Grain-Size#submission-log)
+2. **22 Kasım için önerilen yeni deneysel gönderim.** Kütle payı modelinin daha önce sınadığımız sürümünü 24 toprakla eğitip 10 test toprağına uygulayalım. Aynı görüntü özelliklerini, PLS ayarlarını ve eğri düzeltmesini koruyalım. Şablon ve geçerli eğri kontrollerinden sonra public sonucu aynı hesaptaki saf v3 ile karşılaştıralım. Gerekçe 17/24 toprakta iyileşme ve 37,218 yerel EMD. H493’ün puanı çıkarıldığında sıralama tersine döndü, Motorola → Samsung yönünde hata arttı. Bu adayın public puanı henüz bilinmiyor.
+3. **29 Kasım için final seçimi.** Saf v3’ü ilk aday olarak tutalım. İkinci yer için kütle payı modelini ve daha önce yüklenen %50–%50 v3/KNN karışımını kendi public puanları, iki telefon sınavı ve numune bazında kazançlarıyla birlikte değerlendirelim. Yeni bir deney yapılırsa yanıtlayacağı soruyu public sonucu görmeden kaydedelim.
+
+### 21 Kasım · Aktif model geliştirme planı
+
+**İlk soru.** Saf v3 her fotoğrafta aynı büyüklükteki toprak yüzeyine bakarsa, yeni toprağın laboratuvar eğrisini daha iyi tahmin eder mi? Bugünkü v3 fotoğrafın her kenarının merkezdeki %60’ını kullanıyor ve görüntüyü 4 piksel/mm’ye getiriyor. Ortak 21 toprağın çekimlerinde bu kadrajın kısa kenarı Motorola Edge’de 94 mm, Samsung A52’de 158,25 mm. Önceki 100 mm deneyi üç özelliği değiştirdi ve iki komşu yöntemini sınadı. Bazı özelliklerin telefonlar arasındaki farkı küçüldü, iki telefon yönünde hata aynı yönde değişmedi. Saf v3’ün kullandığı 30 özelliği birlikte aynı fiziksel alanda hesaplama sorusu açık. [Önceki kadraj kontrolü](esit_kadraj_kontrolu.py)
+
+1. **Aynı eğitim düzeninde iki kadrajı karşılaştır.** Kontrol kolu saf v3’ün kayıtlı 38,758 EMD’sini yeniden üretir. Deney kolu görüntünün merkezinden doğrudan 100 × 100 mm alır ve 400 × 400 piksele dönüştürür. Her iki kolda aynı fotoğraflar, özellik tanımları, eğitim görüntüsü türetme ayarları ve tohumları, iki PLS bileşeni ve tane çapı yüzdelikleri kullanılır. Bu deney kadraj kuralının toplam etkisini ölçer. Karenin biçimi ve görülen yüzey alanı birlikte değişir. Daha dar bir kadraj bazı iri taneleri dışarıda bırakabilir.
+2. **Kararı sonuçtan önce tanımla.** Her turda bir toprağın tüm fotoğraflarını ve türevlerini ayır. Birincil ölçü 24 toprağın tüm eğri üzerindeki ortalama EMD’si. Saf v3’ün Motorola Edge → Samsung A52 referansı 41,987, ters yön referansı 42,831 (21 ortak toprak). Yeni kadraj için ortalama ve ortanca eşleşmiş kazancı, kaç toprağın iyileştiğini ve her seferinde bir toprağın puanı çıkarılınca ortalama kazancın aralığını raporla. 0,063 / 0,2 / 0,63 mm hatalarını ve iri uçtaki 20 mm hatasını ayrıca göster. Ana modele geçiş için öneri: 24 toprakta kazanç tek bir puana bağlı kalmasın ve iki telefon yönünde de ortalama EMD artmasın. Tek yönde yarar görülürse saf v3 referans kalır. Android sınavları iPhone’daki başarıyı doğrudan ölçmez.
+3. **Sonraki deneyin gereğini çekimlerden belirle.** İlk karşılaştırmada seçilen kadrajı sabitle. Her saklı numunenin özgün çekimlerinden birini sırayla çıkardığında v3 tahmininin ne kadar değiştiğini ölç. Tek bir çekime duyarlılık birkaç toprakta tekrarlanırsa v3’ün fotoğraf özelliklerini numune düzeyinde ortalama veya ortancayla birleştirmesini karşılaştır. Önce her özgün fotoğrafın eğitim türevlerini kendi içinde ortala, sonra fotoğrafları birleştir. Bulgular kararlıysa yeni özelliği veya modeli denemeden önce etiketli, bağımsız topraklarla sınama imkanını araştır. Her adımda sonraki adayın hangi hatayı azaltması gerektiğini kaydet.
+
+Çekim duyarlılığı için sonucu görmeden bir çalışma eşiği belirledik. Bir özgün çekimi çıkarmak, saklı numunenin tam tahminiyle eksik çekimli tahmini arasında en az 10 EMD fark yaratıyorsa bunu kayda değer bir değişim sayacağız. Bu durum en az üç ayrı toprakta görülürse ortalama ile ortancayı sınayacağız. 10 EMD, saf v3’ün yerel hatasının yaklaşık dörtte biri. Bu eşik, kontrolün çalıştırılmasına karar vermek için kullandığımız bir tercihtir.
+
+### 21 Kasım · Sabit kadraj ve çekim duyarlılığı sonuçları
+
+Saf v3 ile arşivdeki 66 eğrinin 11’er tahminini ve EMD’lerini yeniden ürettik. 100 × 100 mm adayında 127 özgün fotoğrafın ve her biri için aynı sekiz eğitim türevinin 30 özelliğini hesapladık (1.143 satır). Aynı fotoğraflar, fiziksel çözünürlük, özellikler, toprak ayrımları, hedef dönüşümü ve iki PLS modeli kullanıldı. Her saklı toprak yalnızca özgün fotoğraflarıyla sınandı.
+
+| Yerel sınama | Saf v3 | 100 mm kadraj | Özgün kadraj, ortanca | 100 mm ile iyileşen toprak |
+|---|---:|---:|---:|---:|
+| 24 toprak, tüm telefonlar | **38,758** | 40,243 | 38,794 | 12/24 |
+| Motorola Edge → Samsung A52 | 41,987 | **40,955** | 42,136 | 11/21 |
+| Samsung A52 → Motorola Edge | 42,831 | **41,932** | 43,474 | 11/21 |
+
+Sabit kadrajın saf v3’e göre ortalama kazancı 24 toprakta −1,486, ortanca kazancı −0,642 EMD oldu. Her seferinde bir toprağın puanını çıkardığımızda ortalama kazanç −1,998 ile −1,086 arasında kaldı. Buna karşılık iki telefon yönünde ortalama kazanç +1,032 ve +0,898 EMD. Bu kazançlar da tek bir puan çıkarıldığında yönünü korudu. F827’de sabit kadraj 10,289 EMD kazandırdı, H374’te 10,681 ve H038’de 9,883 EMD kaybettirdi.
+
+| 24 toprakta ortalama mutlak hata (yüzde puan) | Saf v3 | 100 mm kadraj | Özgün kadraj, ortanca |
+|---|---:|---:|---:|
+| 0,063 mm | 13,613 | 14,237 | 13,400 |
+| 0,2 mm | 11,718 | 12,011 | 11,552 |
+| 0,63 mm | 9,891 | 10,308 | 10,133 |
+| 20 mm | 6,762 | 6,810 | 6,701 |
+
+**Tek çekime duyarlılık.** Seçilen saf v3 kadrajında, diğer 23 toprakla eğitilmiş aynı modele saklı toprağın sırasıyla bir fotoğrafı eksik çekimlerini verdik. H637, H666, G190, H367 ve H126’da en az bir çekim tahmini 10 EMD’den fazla oynattı. En büyük değişim H637’de 15,502 EMD oldu. O çekim çıkarılınca laboratuvara göre hata 32,675’ten 33,276’ya yükseldi. H367’de ise en etkili çekim çıkarılınca hata 20,445’ten 10,219’a indi. Bir çekimin tahmini ne kadar değiştirdiği ve doğruluğu nasıl etkilediği ayrı ölçüldü.
+
+Beş toprakta eşik aşıldığı için özgün kadrajda ortanca ile birleştirmeyi de sınadık. 13/24 toprakta hata düştü ve ortanca kazanç +1,018 EMD oldu. Buna karşılık ortalama hata 0,036 EMD arttı. İki telefon yönünde de ortalama hata arttı. Bu küçük fark, ortancaya geçmek için gerekçe sağlamıyor.
+
+**Karar.** Saf v3’ün özgün kadrajı ve fotoğraf özelliklerinin aritmetik ortalaması ana model olarak kaldı. 100 mm kadraj, iki Android telefonu arasında aktarımda gözlenen iyileşmeyle kayda geçti. Etiketli iPhone örneğiyle doğrulama değerli bir sonraki sınama olur. [Kod](v3_sabit_kadraj.py) · [198 saklı tahmin eğrisi](v3_kadraj_sonuclari.csv) · [127 çekim çıkarma sonucu](v3_cekim_duyarliligi.csv) · [Sabit kadraj görüntü ölçüleri](v3_100mm_fotograf_olculeri.csv)
+
 ## Yeniden başlarken hatırlanacak kararlar
 
 1. **Ayırma birimi toprak numunesi.** Bir toprağın farklı fotoğraflarını eğitim ve sınava dağıtmak, yeni bir toprağı tahmin etme başarısını olduğundan yüksek gösterebilir. Ölçekleme ve model ayarları her turda eğitim tarafında kalmalı.
@@ -441,4 +602,4 @@ H374'te gerçek iri pay %23,5125. Yeni karşılaştırmadaki saf v3 tahmini %3,0
 3. **Aynı deneyi yeni bir fikir gibi tekrarlama.** 4 × 4 doku değişkenliği, altı özellikli Ridge, sabit %50–%50 karışım ve tek parlak-alan özelliği denendi. Yeniden ele alınacaksa hangi varsayımın değiştiğini ve değişikliğin nasıl sınanacağını önce yaz.
 4. **Ölçü birimlerini açık tut.** Yüzeydeki piksel alanı, laboratuvardaki kütle yüzdesi ve EMD puanı üç farklı nicelik. Pikseli milimetreye çevirirken kameranın kayıtlı çözünürlüğünü indirilen fotoğrafın gerçek boyutuna uyarla.
 5. **Puanın kaynağını yaz.** Kayıtta “24 numunelik yerel”, “21 numunelik kamera sınavı” veya “Kaggle public” ifadesini kullan. Aynı 24 numuneyi birkaç kez incelediğimiz için küçük farkların yeni topraklarda korunup korunmadığı belirsiz.
-6. **Güncel karar.** Kendi dört gönderimimiz içinde en düşük public EMD, sabit karışımla 52,88353. Yazarın saf v3 satırında 38,8 yerel ve 40,90 public EMD kayıtlı. Kendi verimizle yeniden ürettiğimiz saf v3 CSV’si, satır sonları eşitlendiğinde depodaki dosyayla birebir eşleşti (Git blob fa5b1134728960728c87a3114d5f49392578b194). Saf v3’ü yeniden göndermek aynı tahminleri tekrarlayacağı için sonraki model karşılaştırmalarında yazarın bildirdiği 40,90’ı referans alıyoruz. [Yazarın gönderim kaydı](https://github.com/vitalclick/Predicting-Soil-Grain-Size#submission-log)
+6. **Güncel karar.** Kendi dört gönderimimiz içinde en düşük public EMD, sabit karışımla 52,88353. Saf v3 ana modelimiz. Kendi verimizle ürettiğimiz dosya yazarın sürümüyle eşleşiyor (Git blob fa5b1134728960728c87a3114d5f49392578b194). Yazar 40,90 public EMD bildirdi. 100 mm kadraj iki telefon yönünde ilerleme sağladı ancak 24 toprak ortalamasında ve öncelikli üç ince elekte hata arttı. Özgün kadraj ve ortalama ile devam ediyoruz. [Yazarın gönderim kaydı](https://github.com/vitalclick/Predicting-Soil-Grain-Size#submission-log)

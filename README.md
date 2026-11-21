@@ -4,9 +4,12 @@ Bir toprak fotoğrafından kütlenin yüzde kaçının 11 farklı elekten geçec
 
 ## Deney defteri
 
+- Saf v3’te tüm görüntü özelliklerini 100 × 100 mm kadrajda hesaplamak iki telefon yönünde EMD’yi 1,032 ve 0,898 düşürdü. 24 toprak ortalamasında EMD 38,758’den 40,243’e çıktı. Özgün kadrajda fotoğraf özelliklerinin ortancasını kullanmak 38,794 EMD verdi. Ana model, özgün kadrajlı saf v3. [Kadraj ve ortanca sonuçları](outputs/v3_kadraj_sonuclari.csv) · [Tek çekimi çıkarmanın etkisi](outputs/v3_cekim_duyarliligi.csv)
 - Doku ölçüleri, KNN, Ridge, DINOv2, Weibull ve v3 deneylerinin sırası, notebook'lar ve Kaggle gönderimlerinin puanları. [Güncel durum](outputs/GUNCEL_DURUM.md)
 - H374 ve H615'in sekiz fotoğrafı aynı fiziksel ölçekte incelendi. Önceki iri toprak sınavında laboratuvar D50'leri 5,91 ve 5,34 mm iken v3 tahminleri 1,37 ve 6,20 mm oldu. [Görüntü karşılaştırması](outputs/h374_h615_ayni_olcek.png) · [Çekim bazında sonuçlar](outputs/h374_h615_cekimleri.csv)
 - İkinci bir iri tane adayını ölçmek, 24 toprakta ortalama EMD'yi 38,758'den 38,709'a indirdi. H615'in puanı dışarıda bırakıldığında kazanç tersine döndü. Saf v3 referans model olarak kaldı. [Deney kodu](outputs/ikinci_iri_aday.py) · [24 toprak ve iki telefon sınavının sonuçları](outputs/ikinci_iri_aday_sonuclari.csv)
+- Dalgacık enerjisinin bölgelere göre farkı, ortalama enerjiyi kullanan modelin 24 topraktaki EMD’sini 0,708 artırdı. Kütle paylarını öğrenmek saf v3’e göre 17/24 toprakta hatayı azalttı, ancak H493’ün puanı çıkarıldığında sıralama tersine döndü. [Dalgacık tahminleri](outputs/dalgacik_sonuclari.csv) · [Kütle payı tahminleri](outputs/kutle_payi_kontrol_sonuclari.csv) · [Literatür ve deney raporu](outputs/Toprak_Tane_Boyutu_Literatur_ve_Deney_Sonuclari.docx)
+- DINOv2 + Ridge için beş kesit, tek kesite göre EMD’yi 50,617’den 48,849’a indirdi. Saf v3 aynı numunelerde 38,758 EMD verdi. 0,063 / 0,2 / 0,63 mm eleklerinin ortalamasında beş kesitli model yalnızca 7/24 toprakta laboratuvar ölçümüne saf v3’ten daha çok yaklaştı. [Tek ve beş kesit karşılaştırması](outputs/dinov2_kesit_ridge_sonuclari.csv) · [198 elek karşılaştırması](outputs/dinov2_ince_elek_sonuclari.csv)
 
 ## Beş iri toprağı birlikte saklama deneyi
 
@@ -56,6 +59,15 @@ python -m pip install matplotlib
 python outputs/h374_h615_incelemesi.py
 python outputs/ikinci_iri_aday.py
 ```
+
+Sabit kadraj deneyinin 1.143 satırlık görüntü ölçüleri depoda yer alır. Aşağıdaki ilk komut eğitim etiketleriyle tahminleri ve çekim duyarlılığını yeniden hesaplar. İkinci komut 100 × 100 mm ölçülerini de özgün eğitim fotoğraflarından üretir.
+
+```shell
+python outputs/v3_sabit_kadraj.py
+python outputs/v3_sabit_kadraj.py --rebuild-features
+```
+
+Kütle payı deneyi için `python outputs/kutle_payi_kontrolu.py`, dalgacık karşılaştırması için `python outputs/dalgacik_karsilastirmasi.py` çalıştırılır. DINOv2 deneyini görüntülerden tekrarlamak için PyTorch, timm ve safetensors gerekir. `model.safetensors` dosyasını `work/dinov2_small.safetensors` olarak kaydedip `python outputs/dinov2_kesit_ridge.py` çalıştırın. Saklı tahminlerle ince elek denetimi `python outputs/dinov2_ince_elek_kontrolu.py` ile çalışır. [Kullanılan DINOv2 ağırlıkları](https://huggingface.co/timm/vit_small_patch14_dinov2.lvd142m)
 
 ## Görsellerin kaynağı
 
