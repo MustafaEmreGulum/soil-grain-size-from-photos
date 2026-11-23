@@ -1,0 +1,3 @@
+file,iou,ref_kapsami,maske_safligi,ikinci_parca_ref_payi,etiketsiz_ref_payi,otomatik_kisa_eksen_mm,gecer
+Motorola_Edge_H615_02.jpg,0.91473020,0.94040135,0.97102202,0.01161797,0.01121561,24.73446657,True
+Samsung_A52_H615_02.jpg,0.93821090,0.98226729,0.95437551,0.00483619,0.00613625,24.95577666,True

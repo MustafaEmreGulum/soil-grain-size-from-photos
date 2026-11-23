@@ -1,0 +1,9 @@
+file,sample_id,ppm,genislik_mm,yukseklik_mm,bes_kare_kapsami_pct,eski_pozitif_kare,aday_min_genislik_mm,aday_olcum_karelerinde_pct,aday_baglam_kesitlerinde_pct
+Motorola_Edge_60_fusion_H374_01.jpg,H374,12.46500,319.13357,178.41957,5.93281,3,,,
+Motorola_Edge_60_fusion_H374_02.jpg,H374,12.46500,319.13357,178.41957,5.93281,2,,,
+Motorola_Edge_60_fusion_H374_03.jpg,H374,12.46500,319.13357,178.41957,5.93281,1,,,
+Motorola_Edge_H615_01.jpg,H615,4.59680,306.51758,150.53951,7.38440,0,,,
+Motorola_Edge_H615_02.jpg,H615,4.59680,310.65089,151.40968,7.24428,0,26.48715,0.05790,17.26334
+Samsung_A52_H615_01.jpg,H615,4.55252,309.93849,198.79116,5.45203,0,,,
+Samsung_A52_H615_02.jpg,H615,4.55252,310.81712,198.13219,5.45470,0,25.51620,0.00000,5.86051
+Samsung_A52_H615_03.jpg,H615,4.55252,310.81712,198.79116,5.43662,0,,,
