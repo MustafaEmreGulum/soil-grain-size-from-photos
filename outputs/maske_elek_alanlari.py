@@ -12,7 +12,7 @@ OUT = Path(__file__).resolve().parent
 SIEVES = ["0.63", "2", "6.3", "20", "63"]
 
 
-def extract(archive):
+def measure(archive, *, include_volume=False):
     cache = OUT.parent / "work/vitalclick/cache"
     photos = pd.concat([pd.read_csv(cache / f"granulometry_{split}.csv")
                         for split in ("train", "test")]).set_index("file")
@@ -25,16 +25,25 @@ def extract(archive):
                 mask = data["mask"]
             grains = regionprops_table(mask, properties=("area", "axis_minor_length"))
             row = dict(file=name, split=meta.split, sample_id=meta.sample_id, phone=meta.phone)
+            if include_volume:
+                weighted_area = grains["area"] * (grains["axis_minor_length"] / 4.5)
             for sieve in SIEVES:
                 selected = grains["axis_minor_length"] > 4.5 * float(sieve)
                 row["n_" + sieve] = int(selected.sum())
                 row["a_" + sieve] = 100 * grains["area"][selected].sum() / mask.size
+                if include_volume:
+                    row["v_" + sieve] = 100 * weighted_area[selected].sum() / mask.size
             records.append(row)
     result = pd.DataFrame(records).set_index("file")
     archived = pd.concat([pd.read_csv(OUT / f) for f in
                           ("v3_tam_yuzey_20mm_fotograflar.csv", "test20_fotograflar.csv")]).set_index("file").loc[result.index]
     np.testing.assert_allclose(result["a_20"], archived.alan_pct, atol=1e-8, rtol=0)
     np.testing.assert_array_equal(result["n_20"], archived.aday_sayisi)
+    return result
+
+
+def extract(archive):
+    result = measure(archive)
     result.to_csv(OUT / "maske_elek_alanlari.csv", float_format="%.12f")
 
 

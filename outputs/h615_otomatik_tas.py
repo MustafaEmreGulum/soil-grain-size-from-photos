@@ -14,7 +14,7 @@ STEM = ig.out / "h615_otomatik_tas"
 CACHE = ig.work.parent / ".venv" / "tam_kadraj_ig45"
 
 
-def surface(row, box):
+def surface(row, box, resolution=ig.PPM):
     with Image.open(row.path) as src:
         photo = ImageOps.exif_transpose(src).convert("RGB")
     w, h = photo.size
@@ -25,7 +25,7 @@ def surface(row, box):
     rect = (w-box.bottom,box.left,w-box.top,box.right) if portrait else (
         box.left,box.top,box.right,box.bottom)
     roi = photo.crop(rect)
-    dims = tuple(round(n * ig.PPM / ppm) for n in roi.size)
+    dims = tuple(round(n * resolution / ppm) for n in roi.size)
     rgb = np.asarray(roi.resize(dims, Image.Resampling.LANCZOS))
     return rgb, portrait, ppm
 

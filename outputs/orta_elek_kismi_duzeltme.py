@@ -9,12 +9,8 @@ IDX = [COLS.index(s) for s in BANDS]
 INNER = IDX[1:3]
 
 
-def alternatives(base, full, ref, obs):
-    # Durum 1: fiziksel olarak geçerli iki tahminin tam ortası.
-    half = base.copy()
-    half[INNER] = (base[INNER] + full[INNER]) / 2
-
-    # Durum 2: üç ayrı boyut sınıfının alanını kütleyle kalibre et.
+def band_curve(base, ref, obs):
+    """Üç ayrı boyut sınıfının alanını eğitim topraklarının kütlesiyle kalibre et."""
     acols = ["a_" + s for s in BANDS]
     x = -np.diff(ref[acols].to_numpy(), axis=1)
     a = -np.diff(obs[acols].to_numpy(dtype=float))
@@ -28,7 +24,13 @@ def alternatives(base, full, ref, obs):
         # 0,63 ve 20 mm çapa ait geçişler v3 + 20 mm referansından gelir.
         span = base[IDX[-1]] - base[IDX[0]]
         band[INNER] = base[IDX[0]] + span * np.cumsum(mass / mass.sum())[:2]
-    return {BASE:base, "tam":full, "yari":half, "aralik":band}
+    return band
+
+
+def alternatives(base, full, ref, obs):
+    half = base.copy()
+    half[INNER] = (base[INNER] + full[INNER]) / 2
+    return {BASE:base, "tam":full, "yari":half, "aralik":band_curve(base, ref, obs)}
 
 
 def check(curve, base):

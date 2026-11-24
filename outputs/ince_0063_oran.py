@@ -14,16 +14,20 @@ K = COLS.index(MID)
 def ratios(ref, query):
     y = labels.loc[ref.index]
     span = y[HIGH] - y[LOW]
+    return fit_share(ref, query, y[MID] - y[LOW], span)
+
+
+def fit_share(ref, query, numerator, span, columns=TEXTURE):
     used = span > 0
-    x = ref.loc[used, TEXTURE]
-    share = (y.loc[used,MID] - y.loc[used,LOW]) / span[used]
+    x = ref.loc[used, columns]
+    share = numerator.loc[used] / span[used]
     assert len(x) and share.between(0,1).all()
     # Aynı ortak oranı ve Ridge sabit terimini karşılaştırabilmek için aynı ağırlıklar.
     w = span[used] / span[used].mean()
     common = np.average(share, weights=w)
     scaler = StandardScaler().fit(x, sample_weight=w)
     ridge = Ridge(alpha=len(x)).fit(scaler.transform(x), share, sample_weight=w)
-    by_image = np.clip(ridge.predict(scaler.transform(query[TEXTURE])), 0, 1)
+    by_image = np.clip(ridge.predict(scaler.transform(query[columns])), 0, 1)
     return {"ortak":np.full(len(query), common), "doku":by_image}
 
 

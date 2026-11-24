@@ -1,16 +1,56 @@
 # Güncel durum — Fotoğraftan toprak tane boyutu tahmini
 
+**25 Kasım · Kesik iri taşlar için otomatik kontrol.** 4,5 piksel/mm arşivindeki 127 eğitim ve 35 test fotoğrafını taradık. Kısa eksene göre eleme yapmak kesik taşları baştan kaybettirebileceği için, kadraj sınırına değen ve görünür uzun ekseni en az 63 mm olan maskeleri seçtik. Bu ölçüt tespit edilmiş taşlara uygulanır. Üç fotoğrafta dört aday çıktı (H374'te bir, Münster'de üç). Bunları özgün fotoğrafın tamamında 1,125 piksel/mm ile yeniden ölçtük. Üçü fotoğraf kenarına değdi, birinde aynı maskeyi güvenle eşleştiremedik. H374'ün ilk çekimindeki taşın görünen kısa ekseni aynı ölçekte kırpılmış kadrajda 56,00 mm, tam fotoğrafta 57,01 mm. Taşın sol ucu dosyanın dışında. Diğer iki H374 çekiminde de eşleştirme için yeterli ortak yüzey noktası bulunamadı. Pozitif kontrolde ilk fotoğrafın %80 ölçekli kopyasında 85 uyumlu nokta bulundu.
+
+Dört aday için aynı toprağın diğer çekimleriyle toplam 14 karşılaştırma yapıldı. Bir Münster eşleşmesinde diğer çekimdeki iç maske yalnız aynı parçayı kapsıyordu. Önceki kadrajın dışından ek alan %0, iki ölçekte sınır örtüşmesi %25,9 çıktı. Çapı kabul etmek için diğer çekimde iki ölçeğin sınırlarının en az %75 örtüşmesini ve maskede eski kadraj dışından en az %5 yeni alan bulunmasını istedik. Bunlar bu incelemede belirlenen kalite eşikleri. Dört adayın tamamında tam kısa eksen belirsiz kaldı. H374 için 63 mm geçişi ve mevcut tahmin dosyası korunuyor. Önerilen sonraki sınama, bütün görünen taşları yapay olarak kesip kısmi görünümden boyut tahmininin hatasını toprak bazında ölçmek. [Kod](iri_kenar_kontrolu.py) · [Tarama](iri_kenar_tarama.csv) · [Aday ölçümleri](iri_kenar_adaylar.csv) · [Çekimler arası eşleşmeler](iri_kenar_eslesme.csv) · [H374 görseli](iri_kenar_h374.jpg)
+
+**25 Kasım · İkinci ölçek deneyi tamamlandı.** 1,125 piksel/mm çözünürlükte 24 toprağın 127 eğitim çekiminin tamamı işlendi. Hiçbir maskede kısa ekseni 63 mm’yi aşan aday bulunmadı. H038’de sekiz çekimde en büyük kısa eksen 6,45 mm, H374’te üç çekimde 56,00 mm oldu. Laboratuvarda bu iki toprağın kütlesinin sırasıyla %4,29 ve %7,36’sı 63 mm elekte kaldı. Diğer 22 toprakta yanlış pozitif görülmedi. Aday alanı her yerde sıfır olduğundan alan ile kütle arasındaki katsayı öğrenilemedi. Mevcut tahmini koruyan kural 95 numune ve senaryo karşılaştırmasının tamamında aynı EMD’yi verdi. Toprak bazında ortalama 35,0112. Tüm numunelere %100 geçiş veren ayrı kontrol 34,4536 aldı. Yeni Kaggle gönderimi yapılmadı. [Deney kodu](ikinci_olcek_egitim.py) · [Çekimler](ikinci_olcek_egitim_fotograflar.csv) · [Topraklar](ikinci_olcek_egitim_topraklar.csv) · [EMD sonuçları](ikinci_olcek_egitim_sonuclar.csv) · [Örnek fotoğraflar](ikinci_olcek_egitim_ornekler.jpg)
+
+20 mm elekte kütle kalan 16 toprağın aynı 10’unda her iki ölçek de en az bir aday buldu. Diğer sekiz laboratuvar negatifinde iki ölçek de aday üretmedi. Her iki ölçekte kaçan altı toprak, laboratuvardaki elek üstü kütle payına göre H038 (%18,91), H037 (%10,22), G190 (%1,42), H617 (%1,00), H616 (%0,64) ve H668 (%0,17). Önerilen sonraki inceleme H038 ve H037’nin özgün fotoğraflarını, kullanılan kadrajları ve maskeleri 20 mm ölçüsüyle yan yana karşılaştırmak. [Önceki ölçekte elek üstü sayıları](maske_elek_alanlari.csv)
+
+**25 Kasım · İkinci ölçek Münster’de kaçırılan taşı buldu.** Aynı beşinci çekimin aynı toprak kadrajı 1,125 piksel/mm’ye indirilerek doğrulanmış ImageGrains ağırlıklarıyla yerel CPU’da işlendi. 4,5 piksel/mm karşılaştırması kayıtlı Kaggle maskesidir. İki maskeyi aynı ızgarada önceden elle çizilen taşla karşılaştırdık. Tek maskenin hedef alanı kapsaması %0,96’dan %97,25’e, kesişim/birleşim oranı %0,88’den %94,44’e çıktı. Yeni maskenin %97,04’ü elle çizilen sınırın içinde. Otomatik kısa eksen 77,4 mm; aynı telefon ölçeğiyle elle ölçüm 78,1 mm, cetvelle yaklaşık 75,3 mm. Önceden işaretlenen 10 ayrı taş merkezinin 4,5 piksel/mm’de 8’i, 1,125 piksel/mm’de tamamı farklı maskelerde. Bu yalnız seçili noktaların birleşme kontrolüdür. Tek test fotoğrafında görülen bu iyileşme için yerel EMD veya Kaggle puanı ölçülmedi. Sonraki doğrulama aynı sabit ölçeği eğitim çekimlerinde sınamak, sonra 63 mm üstü kütle tahminini toprak dışarıda bırakılarak değerlendirmek. [Karşılaştırma görseli](munster_ikinci_olcek.jpg) · [Ölçümler](munster_ikinci_olcek.csv) · [İkinci maske](munster_ikinci_olcek_maske.npz) · [Kod](munster_ikinci_olcek.py)
+
+**25 Kasım · 63 mm fotoğraf denetimi.** H038 (8 çekim), H374 (3), Münster (5) ve Testfeld (4) için tam fotoğrafı ve mevcut maske kadrajını aynı fiziksel ölçekte yan yana inceledik. Her çekimin 20 ve 63 mm üstü aday sayıları arşivle eşleşti. En büyük otomatik kısa eksenler sırasıyla 7,4 / 55,7 / 53,8 / 35,6 mm. H038’in fotoğraflarında laboratuvardaki %4,29 iri kütleye karşılık gelen belirgin taş seçilemedi. H374’ün ilk çekiminde en büyük taşın kısa ekseni 55,7, uzun ekseni 78,6 mm ve sol sınır taşı kesiyor. Testfeld’de 63 mm kısa eksenli açık bir aday doğrulanamadı.
+
+Münster’in cetvelli 5. çekiminde açık renkli büyük taşın dış çizgisini elle işaretledik. Eşdeğer elipsin görünür kısa ekseni telefon ölçeğiyle 78,1 mm, görüntüdeki cetvelin 0–12 cm aralığıyla yaklaşık 75,3 mm. Elle işaretlenen alanın maske kadrajına düşen kısmının yalnız %1,9’u herhangi bir otomatik taneye ait. En büyük örtüşme komşu bir taşla (%1,0). Burada ana hata iri taneyi atlama. Diğer Münster çekimlerinde kadraj da bazı iri taşları kesiyor. Üstten çap ve laboratuvar elek üstü kütlesi ayrı ölçüler. Bu incelemeden test kütlesi veya puan türetilmedi. Sıradaki sınama, aynı segmentasyonu daha düşük piksel/mm’de ikinci kez çalıştırarak iri adayı geri bulup bulmadığını ve diğer taşlarda yanlış birleşme üretip üretmediğini ölçmek. [Cetvel ve elle çizilen taş](iri_63_gorsel_munster_cetvel.jpg) · [H038](iri_63_gorsel_h038.jpg) · [H374](iri_63_gorsel_h374.jpg) · [Münster](iri_63_gorsel_munster.jpg) · [Testfeld](iri_63_gorsel_testfeld.jpg) · [Çekim ölçüleri](iri_63_gorsel.csv) · [Kod ve elle çizilen koordinatlar](iri_63_gorsel.py)
+
+**25 Kasım · 63 mm geçişinin tek başına kontrolü.** Saklı tam zincirin yalnız 63 mm tahminini mevcut eğriye aldık ve mevcut 20 mm geçişiyle %100 arasına sınırladık. Diğer on nokta sabitken 24 toprakta EMD 35,011 → 34,457 (9 iyileşme, 2 kayıp, 13 eşit). Ancak herkese %100 geçiş vermek de 34,454 sağladı. Eğitimde yalnız H038 (%95,7127 geçiş) ve H374 (%92,6403) 63 mm üstü kütle içeriyor. Her iki numunenin maskelerinde kısa ekseni 63 mm üstünde tane sayısı sıfır. Mevcut test dosyasında yalnız Münster (%88,0970) ve Testfeld Lidl WHV (%97,3273) %100 altında. Bunların beş ve dört çekiminde de maskede 63 mm üstü sayısı sıfır. Dört numuneyi aynı fiziksel ölçekte görsel olarak denetlemek, bu elekte ek düzeltme önerilmeden önceki adımdır. [Saklı eğriler](tam_elek_zinciri_sonuclar.csv) · [Maskelerde elek üstü adet ve alan](maske_elek_alanlari.csv)
+
+**Son deney · 0,63 mm sabitken yalnız 0,2 mm geçişi.** Her sınamada 0,63 mm’den ve 0,063 mm’den geçen miktarlar dahil diğer on elek mevcut modelden alındı. Altı doku ölçüsüyle Ridge, yalnız eğitim topraklarının 0,2 / 0,63 oranını öğrendi. Saklı toprağın mevcut 0,63 mm tahminiyle çarpım komşu eleklerin arasına sınırlandı. 95 saklı numune/senaryoda referans EMD ve yalnız 0,2 mm hatasından gelen EMD farkı doğrulandı. 24 toprakta 0,2 mm ortalama mutlak hatası mevcut modelde 11,578, eğitim topraklarının ağırlıklı ortak oranıyla 13,539, Ridge ile 12,716 yüzde puan. Ridge 9 toprakta iyileşti, 15’inde geriledi. Tüm eğri EMD’si 35,011’den 35,578’e, saha sınamasında 36,048’den 36,490’a çıktı. Motorola → Samsung yönünde 42,067’den 41,527’ye indi; ters yönde 41,395’ten 42,058’e çıktı. En iri beş toprakta 17,874’ten 19,336’ya çıktı. Bu değişiklikten ince eleğe aktarım aşamasına geçilmedi. Public referans 33,85350. [Kod](sabit_063_gecis.py) · [Saklı tahminler](sabit_063_gecis_sonuclar.csv)
+
+**Tam elek zinciri · 200 mm’den 0,002 mm’ye.** Her numunede %100 ile başlayıp ardışık on geçiş oranını altı doku ölçüsünden öğrenen Ridge, 24 toprakta 55,882 EMD verdi. Aynı girdilerden elekleri doğrudan tahmin eden Ridge 59,786, mevcut doku ve taş alanı modeli 35,011. Zincirde 63 mm hatası 0,874 yüzde puanla mevcut 1,597’den küçük; 20 mm’de 6,192 ile mevcut 4,030’dan büyük. 2 mm’ye gelince hata 16,745’e ulaştı (mevcut 7,230). Saha sınamasında tam zincir 57,289 ve mevcut model 36,048. Her basamakta saklı toprağın bir önceki tahmini kullanıldı. Doğrudan modelin eğrileri monotonlaştırıldı. 95 saklı senaryonun referans EMD’leri arşivle doğrulandı. Public referans 33,85350. [Deney kodu](tam_elek_zinciri.py) · [11 elek ve beş sınama](tam_elek_zinciri_ozet.csv) · [Saklı tahminler](tam_elek_zinciri_sonuclar.csv)
+
+**Son deney · 2 → 0,63 → 0,2 → 0,063 mm.** Ara geçişleri sırasıyla öğrenen Ridge 24 toprakta 38,626 EMD, taneler arasındaki düzgün alan oranı eklenince 39,401 EMD verdi. Mevcut 35,011 yerel / 33,85350 public sürümü koruyoruz. [Ara elek deneyi](#araelekzinciri)
+
+**Son deney · Özgün çözünürlük ve 4 piksel/mm.** Aynı kadrajı ve aynı Ridge modelini kullandığımızda yerel EMD 35,278’den 35,218’e indi. Mevcut model 35,011 ile daha düşük hata verdi. [Çözünürlük karşılaştırması](#incecozunurluk)
+
+**24 toprağın 127 çekimi · 0,063 mm.** 18 toprakta tüm çekimler aynı yönde yanıldı. Bunlar bu elekteki toplam mutlak hatanın %88,3’ünü oluşturdu. Altı toprakta tek çekimler laboratuvar değerinin iki tarafına düştü. [Grafik ve sonuçlar](#tumcekim)
+
+**Son inceleme · H616 ve H405’in 11 çekimi.** Mevcut model H616’nın beş çekiminde de ince kütleyi fazla, H405’in altı çekiminde de eksik tahmin etti. Her seferinde bir fotoğraf çıkarıldığında iki toprakta da hata aynı yönde kaldı. [Fotoğraflar ve çekim tahminleri](#cekim616405)
+
+**Son model deneyi · 0,063 / 2 mm oranını doğrudan öğrenme.** Altı doku ölçüsünü kullanan Ridge, 24 toprakta yerel EMD’yi 35,011’den 35,218’e yükseltti. Mevcut 33,85350 public puanlı sürümü koruyoruz. [Karşılaştırma](#inceoranridge)
+
+**Son inceleme · 0,063 mm hatasının kaynağı.** 24 toprağın 19’unda ince malzemenin 2 mm altındaki oranı daha büyük hata bileşeniydi. H037 ve H038’de ise 2 mm toplamının fazla tahmin edilmesi baskındı. Kaggle referansı 33,85350. [Toprak bazında tanı](#incehatatanisi)
+
+**Önceki deney · Taş alanı × kısa çap.** 24 toprakta EMD 35,0112’den 35,1935’e çıktı. En iri beş toprakta beşinin de hatası arttı. Mevcut alan ölçüsünü koruyoruz. [Yerel karşılaştırma](#kisacap24)
+
+**24 Kasım · En iyi Kaggle public EMD 33,85350.** 2 mm düzeltmesini ince eleklere orantılı aktaran gönderim, önceki en iyi puanı 1,78070 düşürdü. 24 toprakta yerel EMD 35,011. [Deney ve sonuç](#incepay24)
+
+**Önceki deney · JPEG.** Aynı 162 çekimi 4 piksel/mm’de ek JPEG işlemiyle ve bu işlem olmadan ölçtük. Ana sınamada EMD 35,4865’ten 35,5804’e çıktı. Kaggle referansı 35,63420 olan üç boyut aralığı sürümü. [Eşlenmiş JPEG deneyi](#jpeg24)
+
+**24 Kasım · Saha denetimi.** Bu denetimde referans üç boyut aralığı sürümüydü (35,63420 public). Aynı modeli sıfırdan yeniden hesapladık ve 15 sahanın her birini bütünüyle ayırarak sınadık. Yerel EMD numune ayrımında 35,486, saha ayrımında 36,469. Açık notebooklardan iki fikrin kontrollü uyarlaması ve sonraki deney planı aşağıda. [GitHub, notebooklar ve saha denetimi](#saha24)
+
 ## Açık Kaggle notebooklarından v3’e aktarım planı · 23 Kasım
 
-**En iyi Kaggle public sonucumuz 35,63420.** Saf v3 ve 20 mm düzeltmesinin üzerine üç boyut aralığının görünür alanlarını ayrı ölçen model, 24 toprakta 35,486 yerel EMD verdi. Yarı yarıya düzeltme public sınamada 35,73986 aldı. [Orta elek karşılaştırması](#ortaelek)
+**23 Kasım sonunda en iyi Kaggle public sonucumuz 35,63420 idi.** Saf v3 ve 20 mm düzeltmesinin üzerine üç boyut aralığının görünür alanlarını ayrı ölçen model, 24 toprakta 35,486 yerel EMD verdi. Yarı yarıya düzeltme public sınamada 35,73986 aldı. [Orta elek karşılaştırması](#ortaelek)
 
 | Sorun ve kaynak fikir | Bizdeki bulgu | Durum ve sıradaki karar |
 |---|---|---|
 | İri taşlar doku ortalamasında kayboluyor. SAM notebook’u ve Sadam, fotoğrafta ölçülen iri taneleri ilgili eleklerde kullanıyor. | H615’te eski beş ölçüm karesi adayı kaçırdı. Tam yüzeyde tek otomatik maskenin elle çizilen sınırla IoU’su Motorola’da 0,915 ve Samsung’da 0,938. [Otomatik sınır kontrolü](h615_otomatik_tas.png) | **127 çekim tamamlandı.** Yerel kazanç 24 toprakta 1,361 EMD, H374 ve H615 hariç 0,718 EMD. 10 test toprağında karşılaştırma tamamlandı. Üç tahmin değişti. [Gönderim adayı](submission_v3_tam_yuzey_20mm.csv) [GPU sonuçları](#gpu20) |
 | Eğitim aralığını aşan dokuda koşullu çap tahmini (Sadam’dan esinlenen yerel uyarlama). | Her sınamada yalnız H615 eşiği geçti. En iri beş toprak birlikte saklandığında 20 mm referansının EMD’si 27,408 iken koşullu çap 50,381 verdi. | Bu çap kuralını bıraktık. [Koşullu çap ve elek sonuçları](#cokluelek) |
 | Tam yüzey düzeltmesini diğer eleklere taşıma. | 2 ve 6,3 mm tam düzeltme yerelde 35,711, public sınamada 37,68440 verdi. | Üç boyut aralığı 35,63420, yarı düzeltme 35,73986 public EMD verdi. [Kısmi düzeltme sonuçları](#ortaelek) |
-| İnce eleklerde fazla veya eksik tahmin. Swathi, tahmini 2 mm geçişine göre kum için ayrı eğri seçiyor. | 0,063, 0,2 ve 0,63 mm birlikte saf v3’ün yerel EMD’sinin %45,49’unu oluşturuyor. Tüm topraklara Weibull uyguladığımızda EMD 39,210 oldu. Swathi’nin bir adayındaki %2,78 ince pay tek eğitim toprağına dayanıyor. | **Açık.** Yalnız görüntüden kum ağırlıklı tahmin edilen topraklarda ayrı eğri kullanmayı sına. Üç ince eleği, H037/H038 gibi karışık toprakları ve tüm eğriyi ayrı raporla. [Mevcut Weibull karşılaştırması](../work/weibull_karsilastirma.py) |
-| Elek eğrisinin şeklini az veriyle öğrenmek. Sadam, geçiş yüzdelerini logit dönüşümünden sonra üç temel bileşenle özetleyip Ridge ile tahmin ediyor. | Biz sıralı elek ve kütle payı hedeflerini denedik. Bu iki deney Sadam’ın üç bileşenli eğri temsilini sınamıyor. [Sıralı elek sonuçları](sirali_elek_sonuclari.csv) | **Yedekte.** Aynı görüntü özellikleri ve aynı Ridge ile çap yüzdelikleri ve üç eğri bileşenini karşılaştır. Bileşenleri yalnızca eğitim eğrilerinden çıkar. |
+| İnce eleklerde fazla veya eksik tahmin. Swathi, tahmini 2 mm geçişine göre kum için ayrı eğri seçiyor. | 0,063, 0,2 ve 0,63 mm birlikte saf v3’ün yerel EMD’sinin %45,49’unu oluşturuyor. Tüm topraklara Weibull uyguladığımızda EMD 39,210 oldu. Swathi’nin bir adayındaki %2,78 ince pay tek eğitim toprağına dayanıyor. | **Kısmen sınandı.** Temiz kum ince pay kuralı saha EMD’sini 36,469’dan 47,009’a çıkardı ve elendi. Weibull yönlendirmesi ayrı bir deney olarak açık. [24 Kasım karşılaştırması](#saha24). İlk plan: Yalnız görüntüden kum ağırlıklı tahmin edilen topraklarda ayrı eğri kullanmayı sına. Üç ince eleği, H037/H038 gibi karışık toprakları ve tüm eğriyi ayrı raporla. [Mevcut Weibull karşılaştırması](../work/weibull_karsilastirma.py) |
+| Elek eğrisinin şeklini az veriyle öğrenmek. Sadam, geçiş yüzdelerini logit dönüşümünden sonra üç temel bileşenle özetleyip Ridge ile tahmin ediyor. | Biz sıralı elek ve kütle payı hedeflerini denedik. Bu iki deney Sadam’ın üç bileşenli eğri temsilini sınamıyor. [Sıralı elek sonuçları](sirali_elek_sonuclari.csv) | **Tamamlandı.** Aynı Ridge ile çap hedefi saha EMD’sinde 38,837, logit + üç bileşen 40,517 verdi. Mevcut referans 36,469. [24 Kasım karşılaştırması](#saha24) |
 | Tamamlayıcı tahminleri birleştirmek veya basit regresyonla kontrol etmek. prvsiyan iki yayımlanmış tahmini birleştiriyor. Soil grain V4’te Elastic Net seçiliyor. | Kendi %50 v3 + %50 KNN gönderimimiz 52,88353 public EMD verdi. O karışım farklı modeller kullanıyordu. | **Düşük öncelik.** Yeni bir bileşen farklı topraklarda v3’ün hatasını telafi ederse birleştirmeyi değerlendir. Elastic Net aynı veride basit bir karşılaştırma adayı olarak kayıtlı. |
 
 **Deney öncesi plan.** İri taş ölçümü için ilk karşılaştırma aynı saklı topraklarda saf v3 ile **saf v3 + 20 mm düzeltmesi** olacak. Yüzey alanını kütleye bağlayan ilişkiyi yalnız eğitim topraklarından öğren. 20 mm hata payını ve 11 elekli eğrinin EMD’sini birlikte raporla. H374 ve H615 geliştirmede kullanıldığı için kalan 22 toprağın sonucunu ayrıca ver. Telefon geçişlerini iki yönde ve tek bir toprağın ortalamaya etkisini kontrol et. Her denemenin sonunda ilgili satıra sonuç dosyasını, sayısal farkı ve devam kararını işle.
@@ -31,8 +71,9 @@
 | 6 · v3, özgün kadraj ve ortanca | [submission_v3_ortanca.csv](submission_v3_ortanca.csv) | 38,794 | 41,67360 |
 | 7 · Saf v3 ve tam yüzeyde 20 mm düzeltmesi | [submission_v3_tam_yuzey_20mm.csv](submission_v3_tam_yuzey_20mm.csv) | 37,396 | 37,15842 |
 | 8 · Saf v3 ve tam yüzeyde 2, 6,3 ve 20 mm düzeltmesi | [submission_v3_tam_yuzey_2_6_3_20mm.csv](submission_v3_tam_yuzey_2_6_3_20mm.csv) | 35,711 | 37,68440 |
-| 9 · Üç boyut aralığı | [submission_v3_orta_elek_aralik.csv](submission_v3_orta_elek_aralik.csv) | 35,486 | **35,63420** |
+| 9 · Üç boyut aralığı | [submission_v3_orta_elek_aralik.csv](submission_v3_orta_elek_aralik.csv) | 35,486 | 35,63420 |
 | 10 · Yarı yarıya düzeltme | [submission_v3_orta_elek_yari.csv](submission_v3_orta_elek_yari.csv) | 36,167 | 35,73986 |
+| 11 · 2 mm düzeltmesini ince eleklere orantılı aktarma | [submission_v3_ince_pay_2mm.csv](submission_v3_ince_pay_2mm.csv) | 35,011 | **33,85350** |
 
 **Bugün hangi model kullanılıyor?** Saf v3, fotoğrafın merkezinde genişliğin ve yüksekliğin %60’ını kullanır (toplam görüntü alanının yaklaşık %36’sı). Fiziksel ölçeği eşitler ve farklı boyutlardaki doku ile kenarları 30 sayıyla özetler. İki özellik grubunda birer tek bileşenli PLS regresyonu, toprak başına tane çapı yüzdeliklerini tahmin eder. İki tahmin log-çap uzayında ortalanıp yarışmanın 11 çapındaki birikimli kütle yüzdelerine dönüştürülür. Saf v3’te çekim özellikleri ortalama ile, 6. gönderimdeki v3 sürümünde ise toprak içindeki çekimler ortanca ile birleştirilir. [Model kodu](../work/vitalclick/src/run.py) · [Kadraj ve ölçümler](../work/vitalclick/src/features.py) · [Bir fotoğraf, modelin kullandığı alan ve gerçek tahmin](v3_fotograf_ve_tahmin_H037.png)
 
@@ -1266,6 +1307,192 @@ v3’te H616’nın en yakın komşusu H126. Geçişler %2,78 ve %68,36 (65,58 p
 
 [24 sorgunun iki özellik grubundaki eşleşmeleri](ince_pay_komsu_ciftleri.csv) · [Özet](ince_pay_komsu_ozet.csv) · [Analiz kodu](ince_pay_komsu_ciftleri.py)
 
+<a id="saha24"></a>
+
+### 24 Kasım · GitHub, açık notebooklar ve saha sınaması
+
+**Arşiv.** GitHub PR #1 açık. Uzak dal başı ve denetim başlangıcındaki yerel commit aynı (6973ff6). Ana dal d4d23e2, PR açıklaması a15272c sürümüne bağlantı veriyor. Deneylerin son kaydı PR dalındaki bu defterde. v3 alt modülünün sabitlenen ve yerelde okunan commit’i 0808d05. [PR](https://github.com/MustafaEmreGulum/soil-grain-size-from-photos/pull/1)
+
+**Yöntem denetimi.** KNN/doku, Ridge/PLS, DINOv2, 5/16 bölge, CNN, Montréal ek verisi, tüm eğri kütle payları, tam yüzey segmentasyonu ve ince elek düzeltmelerinin sonuçlarını karşılaştırdık. 127 eğitim çekiminin 24 toprağa ait olması, yeni bir görsel temsilin yerel kazancını test başarısı saymayı güçleştiriyor. Tam düzeltme 20 mm referansına göre yerelde 1,685 iyileşirken public hata 0,52598 arttı. Üç boyut aralığı ise iki karşılaştırmada da iyileşti. 0,063 mm’de komşu sorgusundaki 15,93 yüzde puan, en yakın toprağın etiket farkıdır; bütün eğrinin model EMD’si farklı bir ölçüdür. 16 bölgeye veya CNN'e dönmeyi destekleyen yeni bir kontrol çıkmadı.
+
+**Yeniden hesaplama.** 1.143 eğitim özellik satırında (çekim, türev) anahtarları tekil, 127 özgün çekim ile maskelerin dosya adları eşleşiyor. Saklı toprağın bütün türevleri ve iki telefonlu sınavlarda hedef telefon eğitim dışında. Ortalama ve ölçekleme eğitim tarafında. 71 mevcut saklı referans EMD’si yeniden eğitilerek 1e-7 toleransında doğrulandı. 35 özgün test çekiminden v3’ü yeniden hesaplayınca 10 toprakta arşivlenen v3 ile dört ondalıkta fark sıfır. Arşivlenmiş maske alanlarından üç aralık düzeltmesi eklendiğinde gönderim dosyasından en büyük fark 0,00000047 yüzde puan (CSV yuvarlaması). Bu kontrol hazır görüntü özellikleri ve maske alanlarından başladı. Yarışma metriği on log10 çap aralığındaki mutlak geçiş hatalarının ağırlıklı toplamı. [Yarışma açıklaması](https://www.kaggle.com/competitions/soil-grain-size-from-photos/overview)
+
+**Açık notebooklarda tekrar okunan beş sürüm.** Aşağıdaki public puanlar 22 Kasım kayıtlarından. Sürümlerin kaynak kodu 24 Kasım’da yeniden indirildi ve çalıştırmadan incelendi.
+
+| Sürüm | Kodda görülen ve bize etkisi |
+|---|---|
+| [Sadam V4](https://www.kaggle.com/code/sadamtorres/soil-psd-physics-not-deep-learning?scriptVersionId=366985271) · 22,28153 | Logit dönüşümü, eğitimde üç PCA bileşeni, Ridge cezası 30. Yayımlanan gönderimde ayrıca eğitim aralığını aşan doku için çap tahmini ve yüksek çözünürlüklü kum ölçümü var. Yazar yalnız regresyon için yaklaşık 51 public bildiriyor. 22,28 tek başına PCA başarısı sayılamaz. |
+| [Swathi V6](https://www.kaggle.com/code/swathiha/photos-to-sieve-curves-the-fines-question?scriptVersionId=370964352) · 19,42515 | Saha ayrımı gerçek konumlarla yapılıyor. Tahmini 2 mm geçişi en az %90 olanlar için kum dalı; farklı adaylarda Weibull ve ince kuyruk müdahalesi var. V6 birden fazla gönderim yazıyor. Düşük ince pay kuralını uygularken hangi dosyanın public puanı aldığına ilişkin varsayım kullanmadık. |
+| [prvsiyan V21](https://www.kaggle.com/code/prvsiyan/trying-some-soil-stuff?scriptVersionId=368162415) · 22,21172 | Sadam ve Swathi’nin önceki pick 1 çıktıları için ağırlıklar 1,15 ve −0,15. Sonuç geçerli eğriye yansıtılıyor. Ağırlık yönünü public skorlarla gerekçelendiriyor. Bağımsız yerel eğitim sınaması sunmuyor. |
+| [Takahito V3](https://www.kaggle.com/code/takahitomizunobyts/soil-texture-model-sam-cobble-measurement?scriptVersionId=355111280) · 36,18733 | Weibull doku tahmini ve SAM taş alanı. 63 mm üstü alan için %2 eşiği, H374 ile katsayı ayarı. Yazarın karşılaştırmasında yalnız Münster değişiyor. Ayrıca keskin çekimleri eğitim çözünürlüğüne indirip eğitim JPEG nicemleme tablosuyla yeniden kodluyor. Bizim sonraki kontrollü deneyimiz için ayrıştırılabilir fikir bu. |
+| [Soil grain V4, sürüm 2](https://www.kaggle.com/code/krishnayadav456wrsty/soil-grain-v4?scriptVersionId=347775378) · 40,22430 | Fotoğraf özelliklerini toprağa göre özetleyip bir-toprak-dışarı sınamasında Ridge, Elastic Net ve diğer adayları karşılaştırıyor. Aynı küçük sınamada model seçilmesi bağımsız performans ölçümü sağlamıyor. |
+
+**Doğrulamada eksik olan kontrol.** Bir toprağı dışarıda tutmak, aynı sahadan diğer toprakları dışarıda tutmuyor. 24 toprak 15 konumdan geliyor; Steinakirchen tek başına altı toprak. Verinin makalesindeki Tablo 1 konumlarını kullandık. Saha kimliği yalnızca ayırma ve raporlama için kullanıldı. Önceki numune ayrımı farklı bir soruyu ölçmeye devam ediyor. Aynı 24 örnek çok kez incelendiği için yeni saha sınaması da bağımsız bir dış veri kümesi sayılmaz. [Veri makalesi, Tablo 1](https://www.deepsoil.at/grai1_data.pdf)
+
+**Uygulanan plan.** Her modele aynı eğitim/test ayrımını ve aynı son 20 mm + üç aralık düzeltmesini uyguladık. Hedef gösterimi karşılaştırması için Ridge girdisi 30 v3 ölçüsü, ceza 30, ölçekleme ve PCA yalnız eğitim tarafında. Kontroller log-çap yüzdelikleri ve PCA’sız logit geçişler. Ana v3 kontrolü kendi iki özellik grubu ve PLS düzenini koruyor. Temiz kum uyarlamasında 2 mm yönlendirmesi bizim referans tahminimizden, 0,063 mm üst sınırı yalnız ilgili eğitim topraklarından hesaplanıyor. Uygun eğitim örneği yoksa referans kullanılıyor. Katsayı/eşik taraması yapılmadı.
+
+| EMD, düşük değer iyi | Tek toprak | Bütün saha | Motorola → Samsung | Samsung → Motorola | En iri beş |
+|---|---:|---:|---:|---:|---:|
+| Mevcut v3 + üç aralık | 35,486 | 36,469 | 41,311 | 42,173 | 20,758 |
+| Ridge + log-çap yüzdelikleri | 37,434 | 38,837 | 43,673 | 42,988 | 27,526 |
+| Ridge + logit geçişler | 40,298 | 40,703 | 40,061 | 42,981 | 26,072 |
+| Ridge + logit + üç bileşen | 40,044 | 40,517 | 39,898 | 42,886 | 25,596 |
+| Mevcut model + temiz kum kuralı | 46,499 | 47,009 | 50,368 | 50,638 | 20,758 |
+
+Saha sütununda her toprak eşit ağırlıkta. Her sahaya eşit ağırlıkla mevcut model 38,195, üç bileşenli model 41,050. Ham v3 aynı saha sınamasında 39,608. Fiziksel düzeltmelerle kazanım 3,139 EMD. Tek-toprak sınamasından saha sınamasına geçişin en büyük ortalama etkisi St. Corona’da (+7,23 EMD). Üç bileşen PCA’sız Ridge’e bir miktar yardımcı oldu, ancak mevcut modeli 15 sahanın yalnızca 6’sında geçti. Temiz kum koşulunu sağlayan tek eğitim toprağı H616 (%2,7806). Simbach saklandığında bu referans kayboluyor. Saha sınamasında kuralın değiştirdiği 11 tahminden 9’unda hata arttı.
+
+**Karar ve sıradaki kontrollü geliştirme.** Public referans 35,63420. Yeni sürümler için Kaggle gönderimi önerilmiyor. Öncelik, Takahito’nun görüntü hazırlama fikrini ölçmek: piksel/mm eşitlemesi üzerine JPEG yeniden kodlamanın ek katkısını eşlenmiş çekimlerde karşılaştır. Aynı topraktan yüksek/düşük çözünürlük çiftleriyle görsel ölçümlerin ne kadar kaydığını önce kontrol et. Mevcut 124 düşük çözünürlüklü Android çekiminin sınırladığı bu deneyde iPhone başarısı ancak ayrı değerlendirmeyle görülebilir. Sonraki modeli numune ve saha EMD’si, her iki telefon yönü ve iri beşliyle karşılaştır. [Deney kodu](saha_ve_egri_deneyi.py) · [475 numune/model/senaryo tahmini](saha_ve_egri_sonuclar.csv)
+
+<a id="jpeg24"></a>
+
+### 24 Kasım · Ek JPEG sıkıştırmasının doku ve tahmine etkisi
+
+127 eğitim ve 35 test çekiminin her biri için v3’ün mevcut merkez kadrajını ve 4 piksel/mm renkli görüntüsünü bir kez oluşturduk. Bir kol bu görüntüyü doğrudan kullandı. Diğer kol aynı pikselleri 124 düşük çözünürlüklü Android eğitim dosyasının ortak nicemleme tabloları ve 4:2:0 renk alt örneklemesiyle bir kez JPEG kodlayıp çözdü. Çıktı boyutları ve JPEG başlığındaki tablolar doğrulandı. Bu, sabit çözünürlükte ek kodlamanın uyarlamasıdır. Eğitimdeki 1.143 özellik satırı, mevcut kamera artırmaları, PLS, taş maskeleri ve kütle düzeltmeleri iki kolda aynı. Ek JPEG yalnızca sorgu tarafındaki doku ölçümüne uygulandı. 95 saklı numune/senaryoda arşiv özelliklerinden hesaplanan referans EMD doğrulandı. Sıkıştırmasız kolda fotoğraftan yeniden hesaplanan eğrilerin arşiv özellikleriyle üretilen eğrilere en büyük EMD uzaklığı 0,00081 idi.
+
+| Yerel sınama, düşük EMD iyi | Ek işlem yok | Ek JPEG | İyileşen toprak |
+|---|---:|---:|---:|
+| Tek toprak saklı | 35,4865 | 35,5804 | 10/24 |
+| Bütün saha saklı, topraklara eşit ağırlık | 36,4693 | 36,5502 | 11/24 |
+| Motorola → Samsung | 41,3108 | 40,8211 | 12/21 |
+| Samsung → Motorola | 42,1725 | 42,8277 | 6/21 |
+| En iri beş birlikte saklı | 20,7580 | 21,2388 | 0/5 |
+
+15 sahaya eşit ağırlık verilirse JPEG 0,1694 EMD kazandırdı. Tabloda yarışma gibi her toprak eşit ağırlıklı. Çekim bazında en çok değişen iki ölçü 9 mm yarıçaplı gri ton açma ölçüsü ve 0,5 mm ölçeğindeki LoG enerjisiydi. 162 çekimde ortanca mutlak değişimleri sırasıyla 0,215 ve 0,136 eğitim standart sapması (ölçek, 24 toprağın çekim ortalamalarından).
+
+Yüksek çözünürlüklü etiketli çekimler (12,465 piksel/mm) yalnız H374’e ait. Bu toprağın saha sınamasında EMD 28,110’dan 29,290’a çıktı. 35 iPhone görüntüsünde kaynak çözünürlük 13,942–19,525 piksel/mm. On test toprağının tümünde JPEG, 0,063 mm geçiş tahminini yukarı taşıdı (+0,019 ile +3,212 yüzde puan). En büyük artış Kleinkummerfeld 2-2’de. İki test tahmin eğrisi arasındaki ortalama uzaklık 3,448 EMD. Test etiketleri kapalı olduğundan bunun gerçek hataya hangi yönde yansıdığı bilinmiyor.
+
+**Karar.** Bu JPEG adımını mevcut modele eklemiyoruz. Yeniden sıkıştırmayı tüm sorgulara uygulamanın yerel faydası tutarlı çıkmadı. Yalnız yüksek çözünürlüklü sorgulara uygulamanın etiketli kanıtı tek toprakla sınırlı. Yeni Kaggle gönderimi hazırlanmadı. [Deney kodu](jpeg_eslenmis_deney.py) · [Sınama özeti](jpeg_eslenmis_ozet.csv) · [Numune tahminleri](jpeg_eslenmis_sonuclar.csv) · [162 eşlenmiş çekimin ölçüleri](jpeg_eslenmis_olculer.csv) · [Telefona göre doku değişimi](jpeg_eslenmis_doku.csv)
+
+<a id="incepay24"></a>
+
+### 24 Kasım · 2 mm düzeltmesini ince eleklere aktarma
+
+Arşivdeki saklı tahminlerde mevcut üç aralık modelini üç ayrı Ridge sürümüyle yarı yarıya karıştırdık. Sırasıyla çap, logit ve üç bileşenli PCA hedefleriyle tek toprak dışarıda EMD 36,371 / 37,296 / 37,163 oldu. Üçü de mevcut 35,486 değerinin üzerinde kaldı. Ağırlık taraması yapmadık.
+
+Üç aralık modeli 2 mm’den geçen miktarı değiştirirken daha ince altı eleği saf v3 düzeyinde bırakıyordu. Yeni adayda bu altı eleğin her birinde saf v3 geçişini, düzeltilmiş 2 mm geçişinin saf v3’teki 2 mm geçişine oranıyla çarptık. Böylece 2 mm altı malzemenin kendi içindeki dağılımını koruduk. Saf v3’ün 2 mm tahmini sıfırsa referans eğrisi korunuyor. Ek bir katsayı öğrenmedik.
+
+| Saklı sınama | Mevcut üç aralık EMD | İnce pay aktarımı EMD | İyileşen toprak |
+|---|---:|---:|---:|
+| Tek toprak | 35,486 | 35,011 | 13/24 |
+| Bütün saha, topraklara eşit ağırlık | 36,469 | 36,048 | 15/24 |
+| Motorola → Samsung | 41,311 | 42,067 | 10/21 |
+| Samsung → Motorola | 42,173 | 41,395 | 15/21 |
+| En iri beş birlikte | 20,758 | 17,874 | 5/5 |
+
+Tek toprak sınamasında ortanca kazanç yalnızca 0,042 EMD. H516 en çok kazandırdı (+5,251), H405 en çok kaybettirdi (−2,362). Herhangi tek bir toprağı puan ortalamasından çıkarınca kazanç en az 0,268. H037 ve H038 çıkarıldığında kazanç 0,374. Saha sınamasında 15 sahanın dokuzunda saha ortalaması iyileşti. On test toprağında 0,063 mm tahmini −3,243 ile +0,074 yüzde puan arasında değişti. Dosya yeniden okunarak örnek gönderim sırası, eğrilerin artan sırada olması, yüzde sınırları ve 2 mm ve üzerindeki tahminlerin referansla eşitliği doğrulandı. Kullanıcının paylaştığı Kaggle ekranında gönderim tamamlandı ve public EMD 33,85350 oldu. Önceki en iyi gönderime (35,63420) göre kazanç 1,78070 EMD. Sonraki deneylerde bu sürüm referans. [Kod](ince_paya_2mm_aktarimi.py) · [95 saklı tahmin](ince_paya_2mm_sonuclar.csv) · [Kaggle adayı](submission_v3_ince_pay_2mm.csv)
+
+<a id="kisacap24"></a>
+
+### 24 Kasım · Aynı taşlarda alan ile alan × kısa çap karşılaştırması
+
+162 fotoğrafın hazır maskelerinde her tanenin görünür alanını ve kısa eksenini ölçtük (4,5 piksel/mm). Her elek için mevcut ölçü, eşiği geçen tanelerin toplam alanının görüntü alanına oranıydı. İkinci kolda her tanenin alanını kendi kısa çapıyla (mm) çarpıp aynı görüntü alanına böldük. Bu, kalınlık için bir yaklaşımdır. Maskelerin eşikleri, fotoğraf ve numune ayrımları, v3, 20 mm düzeltmesi, üç boyut aralığı ve 2 mm altına orantılı aktarım iki kolda aynı kaldı. Her koldaki kütle katsayılarını yalnız o turun eğitim topraklarından hesapladık. Alan kolu, önceki 95 saklı tahminin bütün eğrilerini ve EMD’lerini 1e-7 toleransında yeniden üretti.
+
+| Yerel sınama | Alan EMD | Alan × kısa çap EMD | İyileşen toprak |
+|---|---:|---:|---:|
+| Tek toprak | 35,0112 | 35,1935 | 13/24 |
+| Bütün saha, topraklara eşit ağırlık | 36,0477 | 36,0708 | 12/24 |
+| Motorola → Samsung | 42,0669 | 41,8059 | 15/21 |
+| Samsung → Motorola | 41,3952 | 41,3996 | 9/21 |
+| En iri beş birlikte | 17,8742 | 18,8401 | 0/5 |
+
+Tek toprak sınamasında 2 mm ortalama mutlak hatası hemen hemen aynı kaldı (7,230 → 7,227 yüzde puan). 6,3 mm’de 6,018 → 6,151 ve 20 mm’de 4,030 → 4,190 oldu. En büyük iki EMD kaybı H367 (2,161) ve H368 (2,071). Kararımız görünür alanı korumak. Kısa çapla ağırlıklandırma için Kaggle gönderimi hazırlamadık. [Kod](maske_kisa_cap_deneyi.py) · [162 çekimde ölçülen alanlar ve kısa çapla ağırlıklandırılmış alanlar](maske_kisa_cap_olculeri.csv) · [İki kolun 190 saklı tahmini](maske_kisa_cap_sonuclar.csv)
+
+<a id="incehatatanisi"></a>
+
+### 24 Kasım · 0,063 mm hatası nereden geliyor?
+
+33,85350 public puanlı modelin 95 saklı numune/senaryo tahmini kullanıldı. Her satırda 0,063 mm geçişi, 2 mm geçişi ile onun içindeki ince malzeme oranının çarpımıdır. İki tanı hesabında her seferinde bu iki çarpandan yalnız birini laboratuvar değeriyle değiştirdik. Tüm paydalar pozitifti. Aşağıdaki sayılar yalnız 0,063 mm geçişindeki ortalama mutlak hatadır (yüzde puan). Laboratuvar değerleri yalnız hata incelemesinde kullanıldı.
+
+| Sınama | Mevcut hata | 2 mm toplamı bilinse | 2 mm altındaki ince oran bilinse |
+|---|---:|---:|---:|
+| Tek toprak, 24 | 13,751 | 12,119 | 2,533 |
+| Bütün saha, 24 | 14,413 | 12,719 | 2,552 |
+| Motorola → Samsung, 21 | 16,741 | 16,229 | 3,411 |
+| Samsung → Motorola, 21 | 16,836 | 13,776 | 2,788 |
+| En iri beş birlikte | 1,264 | 2,109 | 2,015 |
+
+İşaretli hatayı çarpanların değiştirilme sırasına eşit ağırlık vererek ayırdık. 24 topraktan 19’unda koşullu ince oranın mutlak katkısı daha büyüktü. H037 ve H038 hariç 22 toprakta mevcut hata 13,276, gerçek 2 mm toplamıyla 13,102, gerçek oranla 1,232. H037’de 2 mm geçişi %97,14 tahmin edildi, laboratuvarda %62,72 ölçüldü. H038’de aynı değerler %94,85 ve %47,23. İri beşli sınamasında bileşenler bazı hataları karşılıklı dengeliyor. Yeni model eğitilmedi.
+
+Bir sonraki karşılaştırma için 2 mm toplamını sabit tut. Eğitim topraklarından 0,063 / 2 mm oranını doğrudan tahmin eden bir modelin saklı topraklarda v3 oranını geçip geçmediğini ölç. Eski 0,02–0,2 mm aralığı içindeki 0,063 mm oranı farklı bir hedefti. Karar ölçüleri 0,063 mm mutlak hatası, eğrinin monotonluğu ve tüm eğri EMD’si. [Analiz kodu](ince_pay_hata_ayrimi.py) · [95 satırda ölçümler ve iki hata bileşeni](ince_pay_hata_ayrimi.csv)
+
+<a id="inceoranridge"></a>
+
+### 0,063 / 2 mm oranını doğrudan tahmin eden Ridge
+
+24 eğitim toprağının saklı sınamalarında hedef, laboratuvarda 0,063 mm’den geçen miktarın 2 mm’den geçen miktara oranıydı. Önceki oran deneyindeki altı doku ölçüsünün toprak başına ortancasını ve aynı Ridge ayarını kullandık. Ölçekleme ve eğitimde 2 mm’den geçen miktar kadar ağırlık verdik. Her turda ceza katsayısı eğitim toprağı sayısına eşitti. Karşılaştırmalar mevcut v3 oranı ve eğitim topraklarının ağırlıklı ortak oranıydı. Üç kolda da 2 mm geçişi sabit kaldı. 0,063 mm tahminini komşu iki eleğin arasına sınırladık. Diğer on noktayı mevcut modelden aldık. 95 saklı referans EMD’si arşivle eşleşti.
+
+| Yerel sınama | 0,063 mm hata, mevcut → Ridge (yüzde puan) | Tüm eğri EMD, mevcut → Ridge |
+|---|---:|---:|
+| Tek toprak | 13,751 → 14,164 | 35,011 → 35,218 |
+| Bütün saha | 14,413 → 14,285 | 36,048 → 35,984 |
+| Motorola → Samsung | 16,741 → 16,138 | 42,067 → 41,764 |
+| Samsung → Motorola | 16,836 → 17,262 | 41,395 → 41,609 |
+| En iri beş birlikte | 1,264 → 2,909 | 17,874 → 18,699 |
+
+Tek toprak sınamasında komşu elek sınırları uygulanmadan önce koşullu oranın ortalama mutlak hatası ortak oranda 22,13, Ridge’de 16,88, mevcut v3 oranında 14,82 yüzde puan. Ridge tahminlerinden dördü sınırlandı. Eğri EMD’si yalnız 7/24 toprakta iyileşti. H037 ve H038 birlikte çıkarıldığında 22 toprakta Ridge lehine fark yalnız 0,016 EMD. Bütün saha sınamasındaki küçük kazanç ve telefon yönlerinin farklı sonuçları bu modeli değiştirmek için yeterli görülmedi. Kaggle referansı 33,85350. [Kod](ince_oran_2mm_ridge.py) · [Numune ve senaryo bazında üç yöntemin sonuçları](ince_oran_2mm_ridge_sonuclar.csv)
+
+<a id="cekim616405"></a>
+
+### H616 ve H405’in tek tek fotoğraflarında 0,063 mm tahmini
+
+Her toprağı bütün fotoğrafları ve türevleriyle eğitim dışında tuttuk. 23 toprakta öğrenilen aynı v3, taş alanı düzeltmesi ve ince pay aktarımı ile tek fotoğraf, tek telefon, bir fotoğraf eksik ve tüm çekim tahminlerini hesapladık. Her durumda yalnız seçili fotoğrafların doku özellikleri ve maske alanları kullanıldı. Tüm çekimlerden elde edilen iki eğri, arşivdeki 11 elek tahminiyle 1e-7 toleransında eşleşti. Laboratuvar sonucu bütün toprak numunesine ait.
+
+| Geçen kütle (%) | Laboratuvar | Tek çekimlerin aralığı | Tüm çekimler | Bir çekim çıkarılınca | Yalnız Motorola | Yalnız Samsung |
+|---|---:|---:|---:|---:|---:|---:|
+| H616 | 2,78 | 34,31–68,96 | 48,55 | 44,01–52,73 | 54,73 | 40,43 |
+| H405 | 75,66 | 21,95–63,12 | 34,25 | 30,12–37,37 | 45,17 | 25,89 |
+
+İki toprakta da telefon seçimi tahmini etkiliyor. Motorola çekimlerini kullanmak her iki tahmini yükseltiyor, fakat H616’nın hatasını büyütürken H405’inkini küçültüyor. Çekimler arası değişkenlik, tek bir uç çekimin ortak sonucu açıklaması için yeterli olmadı. Bu iki toprak 0,063 mm’de en büyük hataları verdikleri için seçildi. Bu gözlemin 24 toprağın tamamına yaygınlığı ayrı sınanmalı. [İşaretli 11 fotoğraf](h616_h405_cekim.png) · [Çekim ve grup tahminleri](h616_h405_cekim.csv) · [Kod](h616_h405_cekim.py)
+
+<a id="tumcekim"></a>
+
+### 24 toprakta tek çekim ve bir fotoğraf eksik sınaması
+
+Her turda bir toprağın tüm çekimlerini ve türevlerini eğitim dışında tuttuk. Aynı 23 toprakla eğitilen modelde sorgu fotoğraflarını tek tek, birlikte ve her seferinde birini çıkararak değerlendirdik. Her seçimde hem doku özelliklerini hem taş alanlarını yeniden topladık. Tam çekimle elde edilen 24 eğrinin 11 noktası arşiv tahminleriyle 1e-7 içinde eşleşti. H616 ve H405’in önceki sonuçları da doğrulandı. Ölçüm aşağıda yalnızca 0,063 mm’den geçen kütle içindir.
+
+| Tek çekimlerin laboratuvara göre yönü | Toprak |
+|---|---:|
+| Bütün çekimler fazla | 8 |
+| Bütün çekimler eksik | 10 |
+| Çekimler iki yönde (G190, H030, H367, H615, H617, H666) | 6 |
+
+Tam çekim tahmininde toplam mutlak hatanın %88,3’ü aynı yönde yanılan 18 topraktan geldi. Hiçbir toprakta tek bir fotoğrafı çıkarmak tam çekim hatasının işaretini değiştirmedi. Her toprağın bir fotoğraf çıkarılınca görülen en büyük tahmin değişimini aldığımızda 24 değerin ortancası 2,46 yüzde puan oldu. G190’da bir çekimi çıkarmak tahmini laboratuvara yaklaştırabildi (birlikte %41,89; en yakın eksik-çekim sonucu %50,17; laboratuvar %50,31). Bu seçimde laboratuvar sonucu sonradan görüldüğünden bir fotoğraf seçme kuralı olarak kullanılamaz. Geliştirme önceliği, büyük hatalı toprakların ince payını ayırt edecek doku bilgisi. [Grafik](tum_toprak_cekim.png) · [24 toprağın özeti](tum_toprak_cekim_ozet.csv) · [Çekim ve grup tahminleri](tum_toprak_cekim_tahminler.csv) · [Kod](tum_toprak_cekim.py)
+
+<a id="incecozunurluk"></a>
+
+### Aynı merkez kadrajda ince doku ve çözünürlük
+
+Ana v3 dört piksel/mm kullanıyor. Önceki ince oran Ridge modelinin altı girdisi ise özgün JPEG çözünürlüğündeki gri ton granülometrisinden geliyordu. 127 eğitim çekiminde aynı merkez kadrajın gri görüntüsünü bir kez özgün çözünürlükte, bir kez Lanczos ile 4 piksel/mm’ye indirerek ölçtük. Fiziksel yarıçaplar, aydınlatma düzeltmesinin mm ölçeği, altı özellik, eğitim ağırlıkları, Ridge cezası, toprak/telefon ayrımları ve diğer on elek aynıydı. Özgün koldaki 95 saklı 0,063 mm tahmini önceki Ridge kaydıyla 0,000018 yüzde puan içinde eşleşti.
+
+| Yerel sınama | Mevcut EMD | 4 piksel/mm Ridge EMD | Özgün Ridge EMD |
+|---|---:|---:|---:|
+| 24 toprak | 35,011 | 35,278 | 35,218 |
+| Saha | 36,048 | 36,043 | 35,984 |
+| Motorola → Samsung | 42,067 | 41,822 | 41,764 |
+| Samsung → Motorola | 41,395 | 41,763 | 41,609 |
+| İri beş birlikte | 17,874 | 18,879 | 18,699 |
+
+24 toprakta 0,063 mm ortalama mutlak hatası mevcut modelde 13,751, 4 piksel/mm Ridge’de 14,282, özgün Ridge’de 14,164 yüzde puan. Ridge kolları arasında 11 toprak iyileşti, dokuzu kötüleşti, dördü eşit kaldı (1e-7 tolerans). Her bir toprağı sırayla puan ortalamasından çıkarınca en düşük kazanç −0,050 yüzde puan. H616’da 4 piksel/mm ile %54,50, özgün dosyada %53,15 tahmin edildi (gerçek %2,78). H405’te %43,47 ve %43,18 (gerçek %75,66). 124 çekimde özgün çözünürlük 4,55–4,60 piksel/mm. Daha yüksek çözünürlüklü üç eğitim çekimi (12,465 piksel/mm) yalnız H374’e ait. Yerel kazanım yeni bir Kaggle sürümü için yeterli görülmedi. Public referans 33,85350. [Kod](ince_doku_cozunurluk.py) · [127 eşlenmiş çekim](ince_doku_cozunurluk_olculer.csv) · [95 toprak/senaryo sonucu](ince_doku_cozunurluk_sonuclar.csv) · [20 mm örnek bölgeler](ince_doku_cozunurluk_detay.png)
+
+<a id="araelekzinciri"></a>
+
+### Ara elekleri öğrenerek 2 mm’den inceye ilerleme
+
+11 elek, mm cinsinden 0,002 / 0,0063 / 0,02 / 0,063 / 0,2 / 0,63 / 2 / 6,3 / 20 / 63 / 200. Mevcut modelin 24 toprakta bu sırayla ortalama mutlak hataları (yüzde puan) 2,82 / 4,66 / 9,53 / 13,75 / 11,58 / 8,81 / 7,23 / 6,02 / 4,03 / 1,60 / 0,00. 200 mm bütün eğitim etiketlerinde %100. 2 mm’deki ortalama tek tek toprakların hatasını örtebilir.
+
+Her saklı sınamada 2 mm ve daha büyük elekler ile 0,02 mm ve daha küçük elekleri sabit tuttuk. Tek noktalı model doğrudan 0,063 / 2 oranını öğreniyor. Üç noktalı doğrudan kontrolde üç oran da 2 mm’ye göre öğreniliyor. Zincirde her geçiş önceki tahminle çarpılıyor. Yalnız ara elek kolunda 0,63 ve 0,2 mm değişiyor. Dışarıda kalan numunenin gerçek geçişi tahmin zincirine girmiyor. Komşu sabit elek sınırları ve monotonluk korunuyor. Aynı altı doku ölçüsüne bir özellik ekleyerek her karşılaştırmayı tekrarladık. Tam toprak kadrajında 4,5 piksel/mm maskeyle eşleşen 5 × 5 piksel pencerelerin tümü tane maskesi dışındaysa ve yerel gri ton standart sapması görüntünün 90. ve 10. yüzdelikleri arasındaki farkın onda birini aşmıyorsa merkezi düzgün sayıldı. Ölçü bu merkezlerin tüm kadrajdaki yüzdesi. Bu görüntü ölçüsü için eşik taraması yapılmadı.
+
+| 24 toprak | 0,63 hata | 0,2 hata | 0,063 hata | Eğri EMD |
+|---|---:|---:|---:|---:|
+| Mevcut | 8,812 | 11,578 | 13,751 | 35,011 |
+| Doğrudan tek elek, doku | 8,812 | 11,578 | 14,164 | 35,218 |
+| Yalnız ara elekler, doku | 11,608 | 14,301 | 13,751 | 37,771 |
+| Üçü doğrudan, doku | 11,608 | 14,801 | 15,246 | 38,770 |
+| Üçü zincir, doku | 11,608 | 14,549 | 15,208 | 38,626 |
+| Üçü zincir, doku ve düzgün alan | 11,648 | 15,263 | 16,005 | 39,401 |
+
+Sonuçta doku zinciri aynı üç hedefi doğrudan öğrenmeyi az farkla geçti, ilk 0,63 mm adımı ise mevcut modele göre kayıp getirdi. Bütün saha saklıyken EMD mevcut 36,048; doku zinciri 39,030; düzgün alanlı zincir 39,843. Tanı amaçlı ayrı hesapta, mevcut modelin 0,063 / 0,2 oranını koruyup bunu gerçek 0,2 mm geçişiyle çarpınca 0,063 mm ortalama mutlak hatası 13,751’den 8,582’ye indi. Bu son sayı laboratuvar bilgisini kullanmanın etkisidir. [Kod](ara_elek_zinciri.py) · [127 çekimde düzgün yüzey](ara_elek_zinciri_alan.csv) · [Tüm sınamaların elek bazında özeti](ara_elek_zinciri_ozet.csv) · [Saklı eğriler](ara_elek_zinciri_sonuclar.csv)
+
 ## Yeniden başlarken hatırlanacak kararlar
 
 1. **Ayırma birimi toprak numunesi.** Bir toprağın farklı fotoğraflarını eğitim ve sınava dağıtmak, yeni bir toprağı tahmin etme başarısını olduğundan yüksek gösterebilir. Ölçekleme ve model ayarları her turda eğitim tarafında kalmalı.
@@ -1273,4 +1500,4 @@ v3’te H616’nın en yakın komşusu H126. Geçişler %2,78 ve %68,36 (65,58 p
 3. **Aynı deneyi yeni bir fikir gibi tekrarlama.** 4 × 4 doku değişkenliği, altı özellikli Ridge, sabit %50–%50 karışım ve tek parlak-alan özelliği denendi. Yeniden ele alınacaksa hangi varsayımın değiştiğini ve değişikliğin nasıl sınanacağını önce yaz.
 4. **Ölçü birimlerini açık tut.** Yüzeydeki piksel alanı, laboratuvardaki kütle yüzdesi ve EMD puanı üç farklı nicelik. Pikseli milimetreye çevirirken kameranın kayıtlı çözünürlüğünü indirilen fotoğrafın gerçek boyutuna uyarla.
 5. **Puanın kaynağını yaz.** Kayıtta “24 numunelik yerel”, “21 numunelik kamera sınavı” veya “Kaggle public” ifadesini kullan. Aynı 24 numuneyi birkaç kez incelediğimiz için küçük farkların yeni topraklarda korunup korunmadığı belirsiz.
-6. **Güncel karar.** Kendi doğrulanmış gönderimlerimiz içinde en düşük public EMD, üç boyut aralığıyla 35,63420. Her iki yeni sürüm saf v3 tabanını kullanıyor. Kendi verimizle ürettiğimiz saf v3 dosyası yazarın sürümüyle eşleşiyor (Git blob fa5b1134728960728c87a3114d5f49392578b194). Yazar 40,90 public EMD bildirdi. [Yazarın gönderim kaydı](https://github.com/vitalclick/Predicting-Soil-Grain-Size#submission-log)
+6. **Güncel karar.** Kendi doğrulanmış gönderimlerimiz içinde en düşük public EMD, 2 mm düzeltmesini ince eleklere aktaran sürümle 33,85350. Alan × kısa çap karşılaştırması tamamlandı. Mevcut alan ölçüsünü koruyoruz. Kendi verimizle ürettiğimiz saf v3 dosyası yazarın sürümüyle eşleşiyor (Git blob fa5b1134728960728c87a3114d5f49392578b194). Yazar 40,90 public EMD bildirdi. [Yazarın gönderim kaydı](https://github.com/vitalclick/Predicting-Soil-Grain-Size#submission-log)

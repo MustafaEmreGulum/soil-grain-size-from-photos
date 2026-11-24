@@ -1,0 +1,21 @@
+sample_id,file,max_kisa_mm,ayni_tane_uzun_mm,max_uzun_mm,en_buyuk_kenarda,kenarda_max_kisa_mm,uzun_63_adet
+H374,Motorola_Edge_60_fusion_H374_01.jpg,55.70085,78.56511,78.56511,True,55.70085,1
+H374,Motorola_Edge_60_fusion_H374_02.jpg,32.47572,57.32473,57.32473,False,28.63149,0
+H374,Motorola_Edge_60_fusion_H374_03.jpg,35.03788,39.31582,45.93180,True,35.03788,0
+H038,Motorola_Edge_H038_01.jpg,7.10611,10.04117,10.04117,False,4.15014,0
+H038,Motorola_Edge_H038_02.jpg,6.75147,9.08254,9.08254,False,5.22630,0
+H038,Motorola_Edge_H038_03.jpg,7.17129,8.79128,11.36388,False,4.27910,0
+H038,Samsung_A52_H038_01.jpg,7.23718,9.95069,10.49283,False,5.73210,0
+H038,Samsung_A52_H038_02.jpg,7.18252,8.76295,11.57476,False,5.84494,0
+H038,Samsung_A52_H038_03.jpg,7.43077,10.30032,10.93649,False,5.55063,0
+H038,Samsung_A52_H038_04.jpg,6.89505,8.82942,8.82942,False,2.74495,0
+H038,Samsung_A52_H038_05.jpg,5.60058,6.71406,7.41202,False,2.70439,0
+HPC_Muenster_BS6_9_0-10m,"iPhone14_HPC_Münster_BS6_9,0-10m (1).JPG",39.66976,59.01980,59.01980,False,37.30683,0
+HPC_Muenster_BS6_9_0-10m,"iPhone14_HPC_Münster_BS6_9,0-10m (2).JPG",53.76543,63.28522,73.24594,True,53.76543,4
+HPC_Muenster_BS6_9_0-10m,"iPhone14_HPC_Münster_BS6_9,0-10m (3).JPG",51.74040,70.84512,70.84512,True,51.74040,2
+HPC_Muenster_BS6_9_0-10m,"iPhone14_HPC_Münster_BS6_9,0-10m (4).JPG",46.66290,65.41119,65.41119,False,26.38469,1
+HPC_Muenster_BS6_9_0-10m,"iPhone14_HPC_Münster_BS6_9,0-10m (5).JPG",50.10751,64.26340,64.26340,False,38.67768,2
+HPC_Testfeld Lidl WHV,iPhone14_HPC_Testfeld Lidl WHV (1).JPG,35.62401,44.34229,47.37580,False,25.96957,0
+HPC_Testfeld Lidl WHV,iPhone14_HPC_Testfeld Lidl WHV (2).JPG,26.39188,35.35247,42.97112,True,26.39188,0
+HPC_Testfeld Lidl WHV,iPhone14_HPC_Testfeld Lidl WHV (3).JPG,34.66264,43.74089,44.12146,False,33.05952,0
+HPC_Testfeld Lidl WHV,iPhone14_HPC_Testfeld Lidl WHV (4).JPG,33.57866,45.56315,46.88841,True,33.57866,0
