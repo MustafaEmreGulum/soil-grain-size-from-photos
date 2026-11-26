@@ -22,7 +22,7 @@ TARGETS = pd.DataFrame(gsd.curve_to_logq(labels.to_numpy()), index=labels.index)
 
 
 @lru_cache(maxsize=12)
-def fixed_crop(path, phone):
+def fixed_crop(path, phone, dx_mm=0, dy_mm=0):
     ref_side, ppm = gsd.PHONES[phone]
     with Image.open(path) as f:
         image = ImageOps.exif_transpose(f).convert("RGB")
@@ -30,7 +30,9 @@ def fixed_crop(path, phone):
         eff_ppm = ppm * max(w, h) / ref_side
         side = round(100 * eff_ppm)
         assert side <= min(w, h), path
-        left, top = (w - side) // 2, (h - side) // 2
+        left = (w - side) // 2 + round(dx_mm * eff_ppm)
+        top = (h - side) // 2 + round(dy_mm * eff_ppm)
+        assert 0 <= left <= w - side and 0 <= top <= h - side, path
         square = image.crop((left, top, left + side, top + side))
         resampling = Image.Resampling.LANCZOS if features.CANON_PPM < eff_ppm else Image.Resampling.BICUBIC
         pixels = round(100 * features.CANON_PPM)

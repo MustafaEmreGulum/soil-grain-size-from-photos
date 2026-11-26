@@ -1,0 +1,17 @@
+panel,file,sample_id,phone,direction,mask_index
+U01,Motorola_Edge_H372_01.jpg,H372,Motorola_Edge,alt,1
+U02,Samsung_A52_H371_01.jpg,H371,Samsung_A52,sol,0
+U03,Motorola_Edge_G190_01.jpg,G190,Motorola_Edge,ust,0
+U04,Samsung_A52_H183_01.jpg,H183,Samsung_A52,sag,1
+U05,Samsung_A52_G190_01.jpg,G190,Samsung_A52,sol,0
+U06,Motorola_Edge_H126_01.jpg,H126,Motorola_Edge,sol,0
+U07,Samsung_A52_F827_01.jpg,F827,Samsung_A52,sag,1
+U08,Motorola_Edge_H615_01.jpg,H615,Motorola_Edge,ust,0
+U09,Motorola_Edge_F827_01.jpg,F827,Motorola_Edge,alt,1
+U10,Samsung_A52_H615_01.jpg,H615,Samsung_A52,sol,0
+U11,Samsung_A52_H126_01.jpg,H126,Samsung_A52,sol,0
+U12,Motorola_Edge_H038_01.jpg,H038,Motorola_Edge,sag,1
+U13,Motorola_Edge_H371_01.jpg,H371,Motorola_Edge,sol,0
+U14,Samsung_A52_H038_01.jpg,H038,Samsung_A52,sag,1
+U15,Samsung_A52_H372_01.jpg,H372,Samsung_A52,sag,1
+U16,Motorola_Edge_H183_01.jpg,H183,Motorola_Edge,alt,1

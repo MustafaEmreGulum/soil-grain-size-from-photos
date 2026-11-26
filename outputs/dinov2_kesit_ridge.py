@@ -41,7 +41,7 @@ def crop_photo(row):
     return images
 
 
-def extract(photos):
+def load_encoder():
     weights = work / "dinov2_small.safetensors"
     expected = "04d27f3400d059fc0cfd7d17dd1909a75bf3ea8fb3eeb48b97cb99e57ee20081"
     with weights.open("rb") as f:
@@ -51,6 +51,11 @@ def extract(photos):
     model.load_state_dict(load_file(str(weights)), strict=True)
     model.eval()
     mean, std = (torch.tensor(model.pretrained_cfg[k]).view(1, 3, 1, 1) for k in ("mean", "std"))
+    return model, mean, std
+
+
+def extract(photos):
+    model, mean, std = load_encoder()
     embeddings = []
     with torch.inference_mode():
         for start in range(0, len(photos), 2):

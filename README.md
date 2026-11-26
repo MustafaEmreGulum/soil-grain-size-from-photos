@@ -4,6 +4,12 @@ Bir toprak fotoğrafından kütlenin yüzde kaçının 11 farklı elekten geçec
 
 ## Deney defteri
 
+- **25 Kasım.** En iyi doğrulanmış Kaggle public EMD **33,85350**. Bu sürüm 2 mm’deki düzeltmeyi ince eleklere de aktarıyor. Yerel ortalama 24 toprakta **35,0112**. Sonraki 63 mm deneyinde 162 çekimi taradık. Kenarda kesilen dört adayın tam kısa eksenini doğrulayamadık. [En iyi gönderim](outputs/submission_v3_ince_pay_2mm.csv) · [Deney sonuçları ve sıradaki adım](outputs/GUNCEL_DURUM.md)
+
+- **23 Kasım.** O tarihteki en iyi doğrulanmış Kaggle public EMD **35,63420**. Bu sürüm, v3 ve 20 mm düzeltmesini kullanarak orta boy tanelerin kütlesini üç boyut aralığına paylaştırıyor. Ardından iki ince elek deneyi ve 24 toprakta komşu karşılaştırması tamamlandı. v3’ün 30 görüntü ölçüsünde en yakın toprağın 0,063 mm laboratuvar geçiş farkı ortalama 15,93 yüzde puan, rastgele eşleşmede 31,70. [Gönderim dosyası](outputs/submission_v3_orta_elek_aralik.csv) · [Komşu karşılaştırması](outputs/GUNCEL_DURUM.md#incekomsu)
+
+- **22 Kasım araştırması.** Beş açık Kaggle notebook’unu saf v3 ile karşılaştırdık. İri taşların alanını doğrudan ölçme fikrini H374 ve H615’in sekiz çekiminde inceledik. 20 mm üzerindeki görünür alan ortalaması sırasıyla %12,52 ve %0,00, laboratuvardaki iri kütle payı %23,51 ve %8,86. [Notebook karşılaştırması ve deney defteri](outputs/GUNCEL_DURUM.md) · [40 ölçüm karesi](outputs/h374_h615_20mm_alan.png) · [Çekim sonuçları](outputs/h374_h615_20mm_alan.csv)
+
 - Saf v3’te tüm görüntü özelliklerini 100 × 100 mm kadrajda hesaplamak iki telefon yönünde EMD’yi 1,032 ve 0,898 düşürdü. 24 toprak ortalamasında EMD 38,758’den 40,243’e çıktı. Özgün kadrajda fotoğraf özelliklerinin ortancasını kullanmak 38,794 EMD verdi. Ana model, özgün kadrajlı saf v3. [Kadraj ve ortanca sonuçları](outputs/v3_kadraj_sonuclari.csv) · [Tek çekimi çıkarmanın etkisi](outputs/v3_cekim_duyarliligi.csv)
 - Doku ölçüleri, KNN, Ridge, DINOv2, Weibull ve v3 deneylerinin sırası, notebook'lar ve Kaggle gönderimlerinin puanları. [Güncel durum](outputs/GUNCEL_DURUM.md)
 - H374 ve H615'in sekiz fotoğrafı aynı fiziksel ölçekte incelendi. Önceki iri toprak sınavında laboratuvar D50'leri 5,91 ve 5,34 mm iken v3 tahminleri 1,37 ve 6,20 mm oldu. [Görüntü karşılaştırması](outputs/h374_h615_ayni_olcek.png) · [Çekim bazında sonuçlar](outputs/h374_h615_cekimleri.csv)
